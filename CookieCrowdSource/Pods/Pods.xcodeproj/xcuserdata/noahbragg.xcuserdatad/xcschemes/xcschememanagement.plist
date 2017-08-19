@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CookieCrowdSource.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -31,6 +36,37 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>0962ADBE3B56B61663E48F7898BD8988</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5191171F7D76122F9931EC16D03B9569</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>769A13782BF1D75EC2518550FD003420</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8734BCE522F8BDD1B8AAC66DCAE277B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D6A013D1660A848F6AAC95CF51442FBD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
