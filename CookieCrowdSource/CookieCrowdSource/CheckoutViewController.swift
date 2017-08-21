@@ -143,10 +143,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.buyButton.addTarget(self, action: #selector(didTapBuy), for: .touchUpInside)
         self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
         self.paymentRow.onTap = { [weak self] _ in
-            self?.paymentContext.pushPaymentMethodsViewController()
+            self?.paymentContext.presentPaymentMethodsViewController()
         }
         self.shippingRow.onTap = { [weak self] _ in
-            self?.paymentContext.pushShippingViewController()
+            self?.paymentContext.presentShippingViewController()
         }
         let button = UIButton(frame: CGRect(x: 100, y: 20, width: 100, height: 50))
         button.backgroundColor = .green
