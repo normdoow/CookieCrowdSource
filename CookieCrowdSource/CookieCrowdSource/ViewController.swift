@@ -18,12 +18,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapCheckout(_ sender: Any) {
-        let controller = CheckoutViewController(product: "Cookies", price: 1200, settings: settings.settings)
+        let controller = CheckoutViewController(product: "Cookies", price: 1000, settings: settings.settings)
         self.present(controller, animated: true, completion: nil)
-    }
-    
-    @IBAction func tapSettings(_ sender: Any) {
-        self.present(settings, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
