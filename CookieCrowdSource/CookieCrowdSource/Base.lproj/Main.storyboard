@@ -38,13 +38,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <mutableString key="text">How Crowd Cookie works…
 
-🍪 Delicious, homemade chocolate chip cookies are made by your neighbors
+🍪 Delicious, homemade chocolate chip cookies are made by your neighbors.
 
-🍪 Get a Dozen cookies for $10
+🍪 Get a Dozen cookies for $10.
 
 🍪 They are delivered right to your door in around 30 minutes!
 
-🍪 Crowd Cookie is in Beta and only available in the Dayton, Ohio area
+🍪 Crowd Cookie is in Beta and only available in some areas of Dayton, Ohio.
 
 🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -59,12 +59,15 @@
                                     <color key="titleColor" red="0.99489795920000001" green="0.98979591840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="tapCheckout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6V9-kZ-6De"/>
+                                    <action selector="tapCheckout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U6v-Yj-4JV"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99489795918367352" green="0.98979591836734693" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <connections>
+                        <outlet property="getCookiesButton" destination="f5p-ll-MWe" id="U5r-eb-sZu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
