@@ -58,24 +58,28 @@ class ViewController: UIViewController {
         getCookiesButton.setTitle("Allow Location in Settings", for: UIControlState())
         getCookiesButton.isEnabled = false
         getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
     }
     
     func changeToNotAvailable() {
         getCookiesButton.setTitle("Cookies Not Available", for: UIControlState())
         getCookiesButton.isEnabled = false
         getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
     }
     
     func changeToGetCookiesButton() {
         getCookiesButton.setTitle("Get Hot Cookies!", for: UIControlState())
         getCookiesButton.isEnabled = true
         getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.0, green:0.18, blue:0.41, alpha:1.00)
     }
     
     func changeToNoLocationButton() {
         getCookiesButton.setTitle("Must Be in Dayton Ohio", for: UIControlState())
         getCookiesButton.isEnabled = false
         getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
 //        getCookiesButton.layer.backgroundColor = UIColor(red:0.22, green:0.65, blue:0.91, alpha:1.00) as! CGColor
 
     }
