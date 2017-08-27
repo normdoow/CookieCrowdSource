@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         checkLocation()
         
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                              selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
     }
 
