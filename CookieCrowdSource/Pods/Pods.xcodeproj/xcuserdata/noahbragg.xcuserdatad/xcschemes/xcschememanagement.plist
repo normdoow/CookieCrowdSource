@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CookieCrowdSource.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,17 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5191171F7D76122F9931EC16D03B9569</key>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>769A13782BF1D75EC2518550FD003420</key>
+		<key>7E7DF1FBF4F96F62490994D5062123D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8734BCE522F8BDD1B8AAC66DCAE277B0</key>
+		<key>88260E98B4EF26C5A61B1D104FDEFE53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>885ED33E923B559F40153FED2F0B8743</key>
 		<dict>
 			<key>primary</key>
 			<true/>

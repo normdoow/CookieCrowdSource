@@ -7,23 +7,25 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class ViewController: UIViewController {
     
     let settings = SettingsViewController()
     let locationChecker = LocationChecker()
     var timer = Timer()
+    var loadingView:NVActivityIndicatorView?
 
     @IBOutlet weak var getCookiesButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkLocation()
+        
+        changeToLoadingButton()
         
         timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                              selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
@@ -45,6 +47,14 @@ class ViewController: UIViewController {
     
     
     func checkLocation() {
+        if loadingView!.isAnimating {       //just the first time hitting the timer
+            loadingView!.stopAnimating()
+            loadingView!.removeFromSuperview()
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 30, target: self,        //reset to make it only check every 30 sec
+                                         selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
+        }
+        //set the different buttons based on location
         if !locationChecker.isLocationAuthorized() {
             changeToNotAuthorizedButton()
         } else if locationChecker.doesRegionIncludeCurrentLocation() {
@@ -52,6 +62,18 @@ class ViewController: UIViewController {
         } else {
             changeToNoLocationButton()
         }
+    }
+    
+    //an awesome animation thing! so cool!
+    func changeToLoadingButton() {
+        getCookiesButton.setTitle("", for: UIControlState())
+        getCookiesButton.isEnabled = false
+        getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
+        //start the animating
+        loadingView = NVActivityIndicatorView(frame: getCookiesButton.frame, type: NVActivityIndicatorType.pacman, color: NVActivityIndicatorView.DEFAULT_COLOR, padding: NVActivityIndicatorView.DEFAULT_PADDING)
+        self.view.addSubview(loadingView!)
+        loadingView!.startAnimating()
     }
     
     func changeToNotAuthorizedButton() {

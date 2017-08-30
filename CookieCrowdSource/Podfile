@@ -8,6 +8,7 @@ target 'CookieCrowdSource' do
   # Pods for CookieCrowdSource
   pod 'Stripe'
   pod 'Alamofire', '~> 4.4'
+  pod 'NVActivityIndicatorView'
 
   target 'CookieCrowdSourceTests' do
     inherit! :search_paths
