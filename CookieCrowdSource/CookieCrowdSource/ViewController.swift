@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapCheckout(_ sender: Any) {
-        let controller = CheckoutViewController(product: "Cookies", price: 1000, settings: settings.settings)
+        let controller = CheckoutViewController(product: "🍪", price: 1000, settings: settings.settings)
         self.present(controller, animated: true, completion: nil)
     }
     

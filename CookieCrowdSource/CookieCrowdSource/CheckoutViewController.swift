@@ -70,7 +70,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.product = product
         self.productImage.text = product
         self.theme = settings.theme
-        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
         
         // This code is included here for the sake of readability, but in your application you should set up your configuration and theme earlier, preferably in your App Delegate.
         let config = STPPaymentConfiguration.shared()
@@ -96,14 +95,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                                           theme: settings.theme)
         var shippingString = "Contact"
         if config.requiredShippingAddressFields.contains(.postalAddress) {
-            shippingString = config.shippingType == .shipping ? "Shipping" : "Delivery"
+            shippingString = config.shippingType == .shipping ? "Delivery" : "Delivery"
         }
         self.shippingString = shippingString
-        self.shippingRow = CheckoutRowView(title: self.shippingString,
-                                           detail: "Enter \(self.shippingString) Info",
-            theme: settings.theme)
-        self.totalRow = CheckoutRowView(title: "Total", detail: "", tappable: false,
-                                        theme: settings.theme)
+        self.shippingRow = CheckoutRowView(title: self.shippingString, detail: "Enter \(self.shippingString) Info", theme: settings.theme)
+        self.totalRow = CheckoutRowView(title: "Total", detail: "", tappable: false, theme: settings.theme)
         self.buyButton = BuyButton(enabled: true, theme: settings.theme)
         var localeComponents: [String: String] = [
             NSLocale.Key.currencyCode.rawValue: self.paymentCurrency,
@@ -188,7 +184,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         MyAPIClient.sharedClient.completeCharge(paymentResult,
                                                 amount: self.paymentContext.paymentAmount,
                                                 shippingAddress: self.paymentContext.shippingAddress,
-                                                shippingMethod: self.paymentContext.selectedShippingMethod,
+                                                shippingMethod: nil,
                                                 completion: completion)
     }
     
@@ -222,8 +218,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         }
         if let shippingMethod = paymentContext.selectedShippingMethod {
             self.shippingRow.detail = shippingMethod.label
-        }
-        else {
+        } else {
             self.shippingRow.detail = "Enter \(self.shippingString) Info"
         }
         self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
@@ -249,36 +244,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didUpdateShippingAddress address: STPAddress, completion: @escaping STPShippingMethodsCompletionBlock) {
-        let upsGround = PKShippingMethod()
-        upsGround.amount = 0
-        upsGround.label = "UPS Ground"
-        upsGround.detail = "Arrives in 3-5 days"
-        upsGround.identifier = "ups_ground"
-        let upsWorldwide = PKShippingMethod()
-        upsWorldwide.amount = 10.99
-        upsWorldwide.label = "UPS Worldwide Express"
-        upsWorldwide.detail = "Arrives in 1-3 days"
-        upsWorldwide.identifier = "ups_worldwide"
-        let fedEx = PKShippingMethod()
-        fedEx.amount = 5.99
-        fedEx.label = "FedEx"
-        fedEx.detail = "Arrives tomorrow"
-        fedEx.identifier = "fedex"
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            if address.country == nil || address.country == "US" {
-                completion(.valid, nil, [upsGround, fedEx], fedEx)
-            }
-            else if address.country == "AQ" {
-                let error = NSError(domain: "ShippingError", code: 123, userInfo: [NSLocalizedDescriptionKey: "Invalid Shipping Address",
-                                                                                   NSLocalizedFailureReasonErrorKey: "We can't ship to this country."])
-                completion(.invalid, error, nil, nil)
-            }
-            else {
-                fedEx.amount = 20.99
-                completion(.valid, nil, [upsWorldwide, fedEx], fedEx)
-            }
-        }
+        let shipping = PKShippingMethod()
+        shipping.amount = 0.0
+        shipping.label = "Delivered to your Door"
+        shipping.detail = "Arrives in 30 - 40 minutes"
+        shipping.identifier = "Delivered to your door"
+        
+        completion(.valid, nil, [shipping], nil)
     }
     
 }

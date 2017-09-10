@@ -27,9 +27,9 @@ class SettingsViewController: UITableViewController {
     }
     
     private var theme: Theme = .Default
-    private var applePay: Switch = .Enabled
+    private var applePay: Switch = .Disabled
     private var requiredBillingAddressFields: RequiredBillingAddressFields = .None
-    private var requiredShippingAddressFields: RequiredShippingAddressFields = .PostalAddressPhone
+    private var requiredShippingAddressFields: RequiredShippingAddressFields = .PostalAddressPhoneEmail
     private var shippingType: ShippingType = .Shipping
     
     fileprivate enum Section: String {
@@ -133,14 +133,14 @@ class SettingsViewController: UITableViewController {
     private enum RequiredShippingAddressFields: String {
         case None = "None"
         case Email = "Email"
-        case PostalAddressPhone = "(PostalAddress|Phone)"
+        case PostalAddressPhoneEmail = "(PostalAddress|Phone|Email)"
         case All = "All"
         
         init(row: Int) {
             switch row {
             case 0: self = .None
             case 1: self = .Email
-            case 2: self = .PostalAddressPhone
+            case 2: self = .PostalAddressPhoneEmail
             default: self = .All
             }
         }
@@ -149,7 +149,7 @@ class SettingsViewController: UITableViewController {
             switch self {
             case .None: return []
             case .Email: return .email
-            case .PostalAddressPhone: return [.postalAddress, .phone]
+            case .PostalAddressPhoneEmail: return [.postalAddress, .phone, .email]
             case .All: return .all
             }
         }
