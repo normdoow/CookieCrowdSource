@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         changeToLoadingButton()
         
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self,
                              selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
     }
 

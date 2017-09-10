@@ -144,9 +144,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.shippingRow.onTap = { [weak self] _ in
             self?.paymentContext.presentShippingViewController()
         }
-        let button = UIButton(frame: CGRect(x: 100, y: 20, width: 100, height: 50))
-        button.backgroundColor = .green
-        button.setTitle("Back", for: .normal)
+        let button = UIButton(frame: CGRect(x: -10, y: 10, width: 100, height: 50))
+        button.backgroundColor = UIColor.clear
+        button.setTitleColor(UIColor(red:0.0, green:0.18, blue:0.41, alpha:1.00), for: UIControlState.normal)
+        button.setTitle("<Back", for: .normal)
+        button.titleLabel!.font = UIFont(name: "Arial-BoldMT", size: 24)
         button.addTarget(self, action: #selector(dismiss as (Void) -> Void), for: .touchUpInside)
         
         self.view.addSubview(button)
