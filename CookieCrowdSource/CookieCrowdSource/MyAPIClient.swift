@@ -13,7 +13,7 @@ import Alamofire
 class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     static let sharedClient = MyAPIClient()
-    var baseURLString: String? = nil
+    var baseURLString: String? = "http://192.168.0.7:5000"
     var baseURL: URL {
         if let urlString = self.baseURLString, let url = URL(string: urlString) {
             return url
@@ -57,6 +57,20 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                     completion(json as? [String: AnyObject], nil)
                 case .failure(let error):
                     completion(nil, error)
+                }
+        }
+    }
+    
+    func isCookAvailable(completionHandler:@escaping (Bool) -> ()) {
+        let url = self.baseURL.appendingPathComponent("is_cook_available")
+        Alamofire.request(url, method: .get)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completionHandler(response.value! == "True")
+                case .failure:
+                    completionHandler(false)
                 }
         }
     }

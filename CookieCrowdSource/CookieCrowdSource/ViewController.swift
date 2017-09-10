@@ -47,20 +47,26 @@ class ViewController: UIViewController {
     
     
     func checkLocation() {
-        if loadingView!.isAnimating {       //just the first time hitting the timer
-            loadingView!.stopAnimating()
-            loadingView!.removeFromSuperview()
-            timer.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: 30, target: self,        //reset to make it only check every 30 sec
-                                         selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
-        }
-        //set the different buttons based on location
-        if !locationChecker.isLocationAuthorized() {
-            changeToNotAuthorizedButton()
-        } else if locationChecker.doesRegionIncludeCurrentLocation() {
-            changeToGetCookiesButton()
-        } else {
-            changeToNoLocationButton()
+        //check the server to see if a cook is available - change the button accordingly
+        MyAPIClient.sharedClient.isCookAvailable() { isCookAvailable in
+            if self.loadingView!.isAnimating {       //just the first time hitting the timer
+                self.loadingView!.stopAnimating()
+                self.loadingView!.removeFromSuperview()
+                self.timer.invalidate()
+                self.timer = Timer.scheduledTimer(timeInterval: 30, target: self,        //reset to make it only check every 30 sec
+                    selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
+            }
+            
+            //set the different buttons based on location
+            if !self.locationChecker.isLocationAuthorized() {
+                self.changeToNotAuthorizedButton()
+            } else if !isCookAvailable {
+                self.changeToNotAvailableButton()
+            } else if self.locationChecker.doesRegionIncludeCurrentLocation() {
+                self.changeToGetCookiesButton()
+            } else {
+                self.changeToNoLocationButton()
+            }
         }
     }
     
@@ -83,7 +89,7 @@ class ViewController: UIViewController {
         getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
     }
     
-    func changeToNotAvailable() {
+    func changeToNotAvailableButton() {
         getCookiesButton.setTitle("Cookies Not Available", for: UIControlState())
         getCookiesButton.isEnabled = false
         getCookiesButton.layer.cornerRadius = 10
