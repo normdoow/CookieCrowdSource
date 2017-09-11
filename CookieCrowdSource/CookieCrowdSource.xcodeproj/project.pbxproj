@@ -18,6 +18,7 @@
 		4B64D6FC1F48ED690004FFA5 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D6FB1F48ED690004FFA5 /* Buttons.swift */; };
 		4B64D6FE1F48EDA60004FFA5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D6FD1F48EDA60004FFA5 /* SettingsViewController.swift */; };
 		4B64D7001F48EDD80004FFA5 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D6FF1F48EDD80004FFA5 /* MyAPIClient.swift */; };
+		4B90164B1F660735005CD0C6 /* CookieUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90164A1F660735005CD0C6 /* CookieUserDefaults.swift */; };
 		4BFCA7091F5226A20078597F /* LocationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCA7081F5226A20078597F /* LocationChecker.swift */; };
 		4BFCA70B1F52470C0078597F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCA70A1F52470C0078597F /* ViewController.swift */; };
 		802D6BD642402764A9380B03 /* Pods_CookieCrowdSourceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850DD740A8A12C555D83031C /* Pods_CookieCrowdSourceUITests.framework */; };
@@ -64,6 +65,7 @@
 		4B64D6FB1F48ED690004FFA5 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		4B64D6FD1F48EDA60004FFA5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4B64D6FF1F48EDD80004FFA5 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
+		4B90164A1F660735005CD0C6 /* CookieUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieUserDefaults.swift; sourceTree = "<group>"; };
 		4BFCA7081F5226A20078597F /* LocationChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChecker.swift; sourceTree = "<group>"; };
 		4BFCA70A1F52470C0078597F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		850DD740A8A12C555D83031C /* Pods_CookieCrowdSourceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookieCrowdSourceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +192,7 @@
 		4BFCA7061F5226780078597F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				4B90164A1F660735005CD0C6 /* CookieUserDefaults.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				4B64D7001F48EDD80004FFA5 /* MyAPIClient.swift in Sources */,
 				4BFCA7091F5226A20078597F /* LocationChecker.swift in Sources */,
 				4B64D6F71F48EA520004FFA5 /* CheckoutViewController.swift in Sources */,
+				4B90164B1F660735005CD0C6 /* CookieUserDefaults.swift in Sources */,
 				4B64D6C81F48D79B0004FFA5 /* AppDelegate.swift in Sources */,
 				4BFCA70B1F52470C0078597F /* ViewController.swift in Sources */,
 				4B64D6FE1F48EDA60004FFA5 /* SettingsViewController.swift in Sources */,

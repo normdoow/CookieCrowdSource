@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createCustomerIfFirstTime()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +47,14 @@ class ViewController: UIViewController {
         timer.invalidate()
     }
     
+    func createCustomerIfFirstTime() {
+        let customerId = CookieUserDefaults().getCustomerId()
+        if customerId == nil {
+            MyAPIClient.sharedClient.createCustomer(completion: {(customerId:String) in
+                CookieUserDefaults().setCustomerId(customorId: customerId)
+            })
+        }
+    }
     
     func checkLocation() {
         //check the server to see if a cook is available - change the button accordingly

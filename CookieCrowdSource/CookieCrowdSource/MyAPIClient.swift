@@ -28,9 +28,12 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                         shippingMethod: PKShippingMethod?,
                         completion: @escaping STPErrorBlock) {
         let url = self.baseURL.appendingPathComponent("charge")
+        let customerId = getCustomerIdHelper()
+        
         var params: [String: Any] = [
             "source": result.source.stripeID,
-            "amount": amount
+            "amount": amount,
+            "customer_id": customerId
         ]
         params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
         Alamofire.request(url, method: .post, parameters: params)
@@ -47,8 +50,11 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let url = self.baseURL.appendingPathComponent("ephemeral_keys")
+        let customerId = getCustomerIdHelper()
+        
         Alamofire.request(url, method: .get, parameters: [
             "api_version": apiVersion,
+            "customer_id": customerId
             ])
             .validate(statusCode: 200..<300)
             .responseJSON { responseJSON in
@@ -57,6 +63,19 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                     completion(json as? [String: AnyObject], nil)
                 case .failure(let error):
                     completion(nil, error)
+                }
+        }
+    }
+    
+    func createCustomer(completion: @escaping (String) -> ()) {
+        let url = self.baseURL.appendingPathComponent("create_customer")
+        Alamofire.request(url, method: .get, parameters: nil)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completion(response.value!)
+                case .failure: break
                 }
         }
     }
@@ -73,6 +92,14 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                     completionHandler(false)
                 }
         }
+    }
+    
+    func getCustomerIdHelper() -> String {
+        var customerId = CookieUserDefaults().getCustomerId()
+        if customerId == nil {
+            customerId = ""
+        }
+        return customerId!
     }
     
 }

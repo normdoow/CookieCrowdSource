@@ -128,7 +128,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
         self.navigationItem.title = "Emoji Apparel"
         
-        self.productImage.font = UIFont.systemFont(ofSize: 70)
+        self.productImage.font = UIFont.systemFont(ofSize: 80)
         self.view.addSubview(self.totalRow)
         self.view.addSubview(self.paymentRow)
         self.view.addSubview(self.shippingRow)
