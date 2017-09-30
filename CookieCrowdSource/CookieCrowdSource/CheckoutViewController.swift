@@ -91,8 +91,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         paymentContext.paymentCurrency = self.paymentCurrency
         self.paymentContext = paymentContext
         
-        self.paymentRow = CheckoutRowView(title: "Payment", detail: "Select Payment",
-                                          theme: settings.theme)
+        self.paymentRow = CheckoutRowView(title: "Payment", detail: "Select Payment", theme: settings.theme)
         var shippingString = "Contact"
         if config.requiredShippingAddressFields.contains(.postalAddress) {
             shippingString = config.shippingType == .shipping ? "Delivery" : "Delivery"
@@ -186,7 +185,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         MyAPIClient.sharedClient.completeCharge(paymentResult,
                                                 amount: self.paymentContext.paymentAmount,
                                                 shippingAddress: self.paymentContext.shippingAddress,
-                                                shippingMethod: nil,
+                                                shippingMethod: self.paymentContext.selectedShippingMethod,
                                                 completion: completion)
     }
     

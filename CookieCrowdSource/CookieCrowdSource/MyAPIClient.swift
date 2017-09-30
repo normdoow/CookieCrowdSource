@@ -35,7 +35,7 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
             "amount": amount,
             "customer_id": customerId
         ]
-        params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
+//        params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
         Alamofire.request(url, method: .post, parameters: params)
             .validate(statusCode: 200..<300)
             .responseString { response in
@@ -52,7 +52,7 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         let url = self.baseURL.appendingPathComponent("ephemeral_keys")
         let customerId = getCustomerIdHelper()
         
-        Alamofire.request(url, method: .get, parameters: [
+        Alamofire.request(url, method: .post, parameters: [
             "api_version": apiVersion,
             "customer_id": customerId
             ])
