@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     let locationChecker = LocationChecker()
     var timer = Timer()
     var loadingView:NVActivityIndicatorView?
+    var isCookAvailable = false
+    var isRightLocation = false
 
     @IBOutlet weak var getCookiesButton: UIButton!
     
@@ -34,8 +36,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapCheckout(_ sender: Any) {
-        let controller = CheckoutViewController(product: "🍪", price: 1000, settings: settings.settings)
-        self.present(controller, animated: true, completion: nil)
+        if !isCookAvailable && !isRightLocation {
+            cookiesAlert(message: "There are no cooks that are making cookies currently. Try agan in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! You also must be in a location that is in a 5 mile radius around the Greene to be able to order cookies. Thank you for your patience while we are getting this new business idea up and running!")
+        } else if !isCookAvailable {
+            cookiesAlert(message: "There are no cooks that are making cookies currently. Try agan in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! Thankyou for your patience while we are getting this new business idea up and running!")
+        } else if !isRightLocation {
+            cookiesAlert(message: "You must be in a location that is in a 5 mile radius from the Greene for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thankyou for your patience while we are getting this new business idea up and running!")
+        } else {
+            let controller = CheckoutViewController(product: "🍪", price: 1000, settings: settings.settings)
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,16 +76,18 @@ class ViewController: UIViewController {
                 self.timer = Timer.scheduledTimer(timeInterval: 30, target: self,        //reset to make it only check every 30 sec
                     selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
             }
+            self.isCookAvailable = isCookAvailable
+            self.isRightLocation = self.locationChecker.doesRegionIncludeCurrentLocation()
             
             //set the different buttons based on location
             if !self.locationChecker.isLocationAuthorized() {
                 self.changeToNotAuthorizedButton()
             } else if !isCookAvailable {
-                self.changeToNotAvailableButton()
-            } else if self.locationChecker.doesRegionIncludeCurrentLocation() {
+                self.changeToWhyNoCookiesButton()
+            } else if self.isRightLocation {
                 self.changeToGetCookiesButton()
             } else {
-                self.changeToNoLocationButton()
+                self.changeToWhyNoCookiesButton()
             }
         }
     }
@@ -120,6 +132,20 @@ class ViewController: UIViewController {
         getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
 //        getCookiesButton.layer.backgroundColor = UIColor(red:0.22, green:0.65, blue:0.91, alpha:1.00) as! CGColor
 
+    }
+    
+    func changeToWhyNoCookiesButton() {
+        getCookiesButton.setTitle("Why can't I get Cookies?", for: UIControlState())
+        getCookiesButton.isEnabled = true
+        getCookiesButton.layer.cornerRadius = 10
+        getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
+    }
+    
+    func cookiesAlert(message:String) {
+        let alertController = UIAlertController(title: "Why Cookies Aren't Available", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
     }
 
 

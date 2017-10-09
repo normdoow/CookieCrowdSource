@@ -36,7 +36,7 @@
                                 <rect key="frame" x="16" y="302" width="343" height="291"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">How Crowd Cookie works…
+                                <string key="text">How Crowd Cookie works…
 
 🍪 Delicious, homemade chocolate chip cookies are made by your neighbors.
 
@@ -46,7 +46,7 @@
 
 🍪 Crowd Cookie is in Beta and only available in some areas of Dayton, Ohio.
 
-🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</mutableString>
+🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="66" y="125"/>
         </scene>
     </scenes>
     <resources>

@@ -33,7 +33,8 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         var params: [String: Any] = [
             "source": result.source.stripeID,
             "amount": amount,
-            "customer_id": customerId
+            "customer_id": customerId,
+            "email": shippingAddress!.email!
         ]
 //        params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
         Alamofire.request(url, method: .post, parameters: params)

@@ -199,7 +199,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             message = error?.localizedDescription ?? ""
         case .success:
             title = "Success"
-            message = "You bought a \(self.product)!"
+            message = "Thank you for your order! You will receive a dozen 🍪s in 30 to 40 minutes!"
         case .userCancellation:
             return
         }
