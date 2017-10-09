@@ -19,11 +19,14 @@ class ViewController: UIViewController {
     var isRightLocation = false
 
     @IBOutlet weak var getCookiesButton: UIButton!
+    @IBOutlet weak var ingredientsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createCustomerIfFirstTime()
+        
+        ingredientsButton.layer.cornerRadius = 10
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,16 +40,25 @@ class ViewController: UIViewController {
 
     @IBAction func tapCheckout(_ sender: Any) {
         if !isCookAvailable && !isRightLocation {
-            cookiesAlert(message: "There are no cooks that are making cookies currently. Try agan in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! You also must be in a location that is in a 5 mile radius around the Greene to be able to order cookies. Thank you for your patience while we are getting this new business idea up and running!")
+            cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! You also must be in a location that is in a 5 mile radius around the Greene to be able to order cookies. Thank you for your patience while we are getting this new business idea up and running!")
         } else if !isCookAvailable {
-            cookiesAlert(message: "There are no cooks that are making cookies currently. Try agan in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! Thankyou for your patience while we are getting this new business idea up and running!")
+            cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! Thank you for your patience while we are getting this new business idea up and running!")
         } else if !isRightLocation {
-            cookiesAlert(message: "You must be in a location that is in a 5 mile radius from the Greene for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thankyou for your patience while we are getting this new business idea up and running!")
+            cookiesAlert(message: "You must be in a location that is in a 5 mile radius from the Greene for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thank you for your patience while we are getting this new business idea up and running!")
         } else {
             let controller = CheckoutViewController(product: "🍪", price: 1000, settings: settings.settings)
             self.present(controller, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func tapIngredients(_ sender: Any) {
+        let message = "The cookies have this in them"
+        let alertController = UIAlertController(title: "Ingredients", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Sounds Yummy!", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,7 +85,7 @@ class ViewController: UIViewController {
                 self.loadingView!.stopAnimating()
                 self.loadingView!.removeFromSuperview()
                 self.timer.invalidate()
-                self.timer = Timer.scheduledTimer(timeInterval: 30, target: self,        //reset to make it only check every 30 sec
+                self.timer = Timer.scheduledTimer(timeInterval: 15, target: self,        //reset to make it only check every 30 sec
                     selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
             }
             self.isCookAvailable = isCookAvailable

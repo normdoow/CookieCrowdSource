@@ -33,10 +33,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd4-lF-yf7">
-                                <rect key="frame" x="16" y="302" width="343" height="291"/>
+                                <rect key="frame" x="16" y="293" width="343" height="262"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">How Crowd Cookie works…
+                                <mutableString key="text">How Crowd Cookie works…
 
 🍪 Delicious, homemade chocolate chip cookies are made by your neighbors.
 
@@ -46,7 +46,7 @@
 
 🍪 Crowd Cookie is in Beta and only available in some areas of Dayton, Ohio.
 
-🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</string>
+🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -62,16 +62,28 @@
                                     <action selector="tapCheckout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U6v-Yj-4JV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFq-ru-tcV">
+                                <rect key="frame" x="16" y="563" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77270227670669556" green="0.58969438076019287" blue="0.28620889782905579" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Ingredients?">
+                                    <color key="titleColor" red="0.99489795920000001" green="0.98979591840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapIngredients:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gvg-ay-Wr4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99489795918367352" green="0.98979591836734693" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
                         <outlet property="getCookiesButton" destination="f5p-ll-MWe" id="U5r-eb-sZu"/>
+                        <outlet property="ingredientsButton" destination="mFq-ru-tcV" id="6bL-zj-ny8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="66" y="125"/>
+            <point key="canvasLocation" x="64.799999999999997" y="124.58770614692655"/>
         </scene>
     </scenes>
     <resources>
