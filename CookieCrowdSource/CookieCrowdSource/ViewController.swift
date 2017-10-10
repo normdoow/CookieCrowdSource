@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapIngredients(_ sender: Any) {
-        let message = "The cookies have this in them"
+        let message = "Unsalted butter, sugar, brown sugar, eggs, flour, ground oats, semisweet chocolate chips, vanilla, salt, baking powder, baking soda."
         let alertController = UIAlertController(title: "Ingredients", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Sounds Yummy!", style: .default, handler: nil)
         alertController.addAction(action)
