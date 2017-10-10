@@ -46,7 +46,11 @@ class ViewController: UIViewController {
         } else if !isRightLocation {
             cookiesAlert(message: "You must be in a location that is in a 5 mile radius from the Greene for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thank you for your patience while we are getting this new business idea up and running!")
         } else {
-            let controller = CheckoutViewController(product: "🍪", price: 1000, settings: settings.settings)
+            var price = 1000
+            if CookieUserDefaults().gotFreeCookies() == nil || !CookieUserDefaults().gotFreeCookies()! {
+                price = 0
+            }
+            let controller = CheckoutViewController(product: "🍪", price: price, settings: settings.settings)
             self.present(controller, animated: true, completion: nil)
         }
     }

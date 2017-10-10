@@ -11,6 +11,7 @@ import Foundation
 class CookieUserDefaults {
     
     private static let CUSTOMER_ID = "customer-id"
+    private static let FREE_COOKIES = "free-cookies"
     private var defaults:UserDefaults
     
     init() {
@@ -23,5 +24,13 @@ class CookieUserDefaults {
     
     func getCustomerId() -> String? {
         return defaults.string(forKey: CookieUserDefaults.CUSTOMER_ID)
+    }
+    
+    func setGotFreeCookies(gotFreeCookies:Bool) {
+        defaults.set(gotFreeCookies, forKey: CookieUserDefaults.FREE_COOKIES)
+    }
+    
+    func gotFreeCookies() -> Bool? {
+        return defaults.bool(forKey: CookieUserDefaults.FREE_COOKIES)
     }
 }

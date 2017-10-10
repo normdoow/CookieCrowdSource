@@ -200,6 +200,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         case .success:
             title = "Success"
             message = "Thank you for your order! You will receive a dozen 🍪s in 30 to 40 minutes!"
+            CookieUserDefaults().setGotFreeCookies(gotFreeCookies: true)
         case .userCancellation:
             return
         }
