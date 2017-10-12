@@ -36,7 +36,7 @@
                                 <rect key="frame" x="16" y="293" width="343" height="262"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">How Crowd Cookie works…
+                                <string key="text">How Crowd Cookie works…
 
 🍪 Delicious, homemade chocolate chip cookies are made by your neighbors.
 
@@ -46,7 +46,7 @@
 
 🍪 Crowd Cookie is in Beta and only available in some areas of Dayton, Ohio.
 
-🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</mutableString>
+🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -73,10 +73,15 @@
                                     <action selector="tapIngredients:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gvg-ay-Wr4"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="first_dozen_free" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-hR-KhK">
+                                <rect key="frame" x="0.0" y="73" width="197" height="144"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99489795918367352" green="0.98979591836734693" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
+                        <outlet property="dozenFreeImage" destination="2lt-hR-KhK" id="Fil-yM-JBs"/>
                         <outlet property="getCookiesButton" destination="f5p-ll-MWe" id="U5r-eb-sZu"/>
                         <outlet property="ingredientsButton" destination="mFq-ru-tcV" id="6bL-zj-ny8"/>
                     </connections>
@@ -88,5 +93,6 @@
     </scenes>
     <resources>
         <image name="cookie_background" width="621" height="397"/>
+        <image name="first_dozen_free" width="488" height="342"/>
     </resources>
 </document>

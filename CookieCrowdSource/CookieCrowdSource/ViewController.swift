@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var getCookiesButton: UIButton!
     @IBOutlet weak var ingredientsButton: UIButton!
+    @IBOutlet weak var dozenFreeImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,10 @@ class ViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self,
                              selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        dozenFreeImage.isHidden = CookieUserDefaults().gotFreeCookies()!
     }
 
     @IBAction func tapCheckout(_ sender: Any) {
