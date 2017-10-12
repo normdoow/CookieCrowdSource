@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CookieCrowdSource/CheckoutViewController.swift"
-            timestampString = "526779669.23445"
+            timestampString = "529539704.053292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CookieCrowdSource/CheckoutViewController.swift"
-            timestampString = "529285698.878164"
+            timestampString = "529539704.053292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "paymentContextDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>

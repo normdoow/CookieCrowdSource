@@ -113,6 +113,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         super.init(nibName: nil, bundle: nil)
         self.paymentContext.delegate = self
         paymentContext.hostViewController = self
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,7 +139,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.buyButton.addTarget(self, action: #selector(didTapBuy), for: .touchUpInside)
         self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
         self.paymentRow.onTap = { [weak self] _ in
-            self?.paymentContext.presentPaymentMethodsViewController()
+            if CookieUserDefaults().gotFreeCookies()! {
+                self?.paymentContext.presentPaymentMethodsViewController()
+            }
         }
         self.shippingRow.onTap = { [weak self] _ in
             self?.paymentContext.presentShippingViewController()
@@ -212,7 +215,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         self.paymentRow.loading = paymentContext.loading
-        if let paymentMethod = paymentContext.selectedPaymentMethod {
+        if !CookieUserDefaults().gotFreeCookies()! {
+            self.paymentRow.detail = "FREE"
+            
+        } else if let paymentMethod = paymentContext.selectedPaymentMethod {
             self.paymentRow.detail = paymentMethod.label
         }
         else {
