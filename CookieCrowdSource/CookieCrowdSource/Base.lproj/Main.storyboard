@@ -73,7 +73,7 @@
                                     <action selector="tapIngredients:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gvg-ay-Wr4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="first_dozen_free" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-hR-KhK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="first_dozen_half_off" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-hR-KhK">
                                 <rect key="frame" x="0.0" y="73" width="197" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -93,6 +93,6 @@
     </scenes>
     <resources>
         <image name="cookie_background" width="621" height="397"/>
-        <image name="first_dozen_free" width="488" height="342"/>
+        <image name="first_dozen_half_off" width="488" height="342"/>
     </resources>
 </document>

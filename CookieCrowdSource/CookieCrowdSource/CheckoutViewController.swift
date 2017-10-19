@@ -81,6 +81,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         config.shippingType = settings.shippingType
         config.additionalPaymentMethods = settings.additionalPaymentMethods
         
+        
+        
         let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
         let paymentContext = STPPaymentContext(customerContext: customerContext,
                                                configuration: config,
@@ -88,6 +90,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         let userInformation = STPUserInformation()
         paymentContext.prefilledInformation = userInformation
         paymentContext.paymentAmount = price
+        if !CookieUserDefaults().gotFreeCookies()! {
+            paymentContext.paymentAmount = 500
+        }
         paymentContext.paymentCurrency = self.paymentCurrency
         self.paymentContext = paymentContext
         
@@ -139,9 +144,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.buyButton.addTarget(self, action: #selector(didTapBuy), for: .touchUpInside)
         self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
         self.paymentRow.onTap = { [weak self] _ in
-            if CookieUserDefaults().gotFreeCookies()! {
+//            if CookieUserDefaults().gotFreeCookies()! {
                 self?.paymentContext.presentPaymentMethodsViewController()
-            }
+//            }
         }
         self.shippingRow.onTap = { [weak self] _ in
             self?.paymentContext.presentShippingViewController()
@@ -179,36 +184,37 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     func didTapBuy() {
         self.paymentInProgress = true
-        if CookieUserDefaults().gotFreeCookies()! {      //the user has to pay money for the cookies
-            self.paymentContext.requestPayment()
-        } else {                                        //the user gets the cookies free
-            if paymentContext.shippingAddress == nil {
-                self.paymentContext.presentShippingViewController()
-                self.paymentInProgress = false
-            } else {
-                MyAPIClient.sharedClient.completeCharge(STPPaymentResult.init(),
-                                                        amount: self.paymentContext.paymentAmount,
-                                                        shippingAddress: self.paymentContext.shippingAddress,
-                                                        shippingMethod: self.paymentContext.selectedShippingMethod,
-                                                        completion: {
-                                                            self.paymentInProgress = false
-                                                            var message = ""
-                                                            var title = ""
-                                                            if $0 == nil {
-                                                                title = "Success"
-                                                                message = "Thank you for your order! You will receive a dozen 🍪s in 30 to 40 minutes!"
-                                                                CookieUserDefaults().setGotFreeCookies(gotFreeCookies: true)
-                                                            } else {
-                                                                title = "Error"
-                                                                message = $0?.localizedDescription ?? ""
-                                                            }
-                                                            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                                                            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                                                            alertController.addAction(action)
-                                                            self.present(alertController, animated: true, completion: nil)
-                                                        })
-            }
-        }
+        self.paymentContext.requestPayment()
+//        if CookieUserDefaults().gotFreeCookies()! {      //the user has to pay money for the cookies
+//            self.paymentContext.requestPayment()
+//        } else {                                        //the user gets the cookies free
+//            if paymentContext.shippingAddress == nil {
+//                self.paymentContext.presentShippingViewController()
+//                self.paymentInProgress = false
+//            } else {
+//                MyAPIClient.sharedClient.completeCharge(STPPaymentResult.init(),
+//                                                        amount: self.paymentContext.paymentAmount,
+//                                                        shippingAddress: self.paymentContext.shippingAddress,
+//                                                        shippingMethod: self.paymentContext.selectedShippingMethod,
+//                                                        completion: {
+//                                                            self.paymentInProgress = false
+//                                                            var message = ""
+//                                                            var title = ""
+//                                                            if $0 == nil {
+//                                                                title = "Success"
+//                                                                message = "Thank you for your order! You will receive a dozen 🍪s in 30 to 40 minutes!"
+//                                                                CookieUserDefaults().setGotFreeCookies(gotFreeCookies: true)
+//                                                            } else {
+//                                                                title = "Error"
+//                                                                message = $0?.localizedDescription ?? ""
+//                                                            }
+//                                                            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//                                                            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                                                            alertController.addAction(action)
+//                                                            self.present(alertController, animated: true, completion: nil)
+//                                                        })
+//            }
+//        }
     }
     
     // MARK: STPPaymentContextDelegate
@@ -244,13 +250,13 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         self.paymentRow.loading = paymentContext.loading
-        if !CookieUserDefaults().gotFreeCookies()! {
-            self.paymentRow.detail = "FREE"
-            
-        } else if let paymentMethod = paymentContext.selectedPaymentMethod {
+//        if !CookieUserDefaults().gotFreeCookies()! {
+//            self.paymentRow.detail = "FREE"
+//            
+//        } else
+        if let paymentMethod = paymentContext.selectedPaymentMethod {
             self.paymentRow.detail = paymentMethod.label
-        }
-        else {
+        } else {
             self.paymentRow.detail = "Select Payment"
         }
         if let shippingMethod = paymentContext.selectedShippingMethod {
