@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0E3CCD1FA15D4A0042FB95 /* StripeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */; };
 		4B64D6C81F48D79B0004FFA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D6C71F48D79B0004FFA5 /* AppDelegate.swift */; };
 		4B64D6CD1F48D79B0004FFA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B64D6CB1F48D79B0004FFA5 /* Main.storyboard */; };
 		4B64D6CF1F48D79B0004FFA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B64D6CE1F48D79B0004FFA5 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		25455F72924140952BFF5592 /* Pods_CookieCrowdSourceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookieCrowdSourceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		262E305268BA5B5DE287F934 /* Pods_CookieCrowdSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookieCrowdSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCB23DC381D7897CCD8C38A /* Pods-CookieCrowdSourceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookieCrowdSourceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookieCrowdSourceTests/Pods-CookieCrowdSourceTests.release.xcconfig"; sourceTree = "<group>"; };
+		4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeKey.swift; sourceTree = "<group>"; };
 		4B64D6C41F48D79B0004FFA5 /* CookieCrowdSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookieCrowdSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64D6C71F48D79B0004FFA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B64D6CC1F48D79B0004FFA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				4B64D6FB1F48ED690004FFA5 /* Buttons.swift */,
 				4B64D6FD1F48EDA60004FFA5 /* SettingsViewController.swift */,
 				4B64D6FF1F48EDD80004FFA5 /* MyAPIClient.swift */,
+				4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */,
 			);
 			name = stripe;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				4BFCA7091F5226A20078597F /* LocationChecker.swift in Sources */,
 				4B64D6F71F48EA520004FFA5 /* CheckoutViewController.swift in Sources */,
 				4B90164B1F660735005CD0C6 /* CookieUserDefaults.swift in Sources */,
+				4B0E3CCD1FA15D4A0042FB95 /* StripeKey.swift in Sources */,
 				4B64D6C81F48D79B0004FFA5 /* AppDelegate.swift in Sources */,
 				4BFCA70B1F52470C0078597F /* ViewController.swift in Sources */,
 				4B64D6FE1F48EDA60004FFA5 /* SettingsViewController.swift in Sources */,

@@ -13,13 +13,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // 1) To get started with this demo, first head to https://dashboard.stripe.com/account/apikeys
     // and copy your "Test Publishable Key" (it looks like pk_test_abcdef) into the line below.
-    let stripePublishableKey = "pk_test_tAMChOZmT4OHrVNyhGvJmuLH"
     
     // 2) Next, optionally, to have this demo save your user's payment details, head to
     // https://github.com/stripe/example-ios-backend , click "Deploy to Heroku", and follow
     // the instructions (don't worry, it's free). Replace nil on the line below with your
     // Heroku URL (it looks like https://blazing-sunrise-1234.herokuapp.com ).
-    let backendBaseURL: String? = "http://192.168.0.7:5000"
     
     // 3) Optionally, to enable Apple Pay, follow the instructions at https://stripe.com/docs/mobile/apple-pay
     // to create an Apple Merchant ID. Replace nil on the line below with it (it looks like merchant.com.yourappname).
@@ -61,8 +59,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     init(product: String, price: Int, settings: Settings) {
         
-        let stripePublishableKey = self.stripePublishableKey
-        let backendBaseURL = self.backendBaseURL
+        let stripePublishableKey = StripeKey.PUBLIC_KEY
+        let backendBaseURL = MyAPIClient.baseURLString
         
         assert(stripePublishableKey.hasPrefix("pk_"), "You must set your Stripe publishable key at the top of CheckoutViewController.swift to run this app.")
         assert(backendBaseURL != nil, "You must set your backend base url at the top of CheckoutViewController.swift to run this app.")
@@ -73,7 +71,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
         // This code is included here for the sake of readability, but in your application you should set up your configuration and theme earlier, preferably in your App Delegate.
         let config = STPPaymentConfiguration.shared()
-        config.publishableKey = self.stripePublishableKey
+        config.publishableKey = StripeKey.PUBLIC_KEY
         config.appleMerchantIdentifier = self.appleMerchantID
         config.companyName = self.companyName
         config.requiredBillingAddressFields = settings.requiredBillingAddressFields
