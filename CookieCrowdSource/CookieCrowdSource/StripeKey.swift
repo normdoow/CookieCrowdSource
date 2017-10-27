@@ -9,5 +9,6 @@
 import Foundation
 
 public class StripeKey {
-    public static let PUBLIC_KEY = "pk_test_tAMChOZmT4OHrVNyhGvJmuLH"
+//    public static let PUBLIC_KEY = "pk_test_tAMChOZmT4OHrVNyhGvJmuLH"       //testing key
+    public static let PUBLIC_KEY = "pk_live_9Kcag7bFv5h1BM96L9FBDWxa"
 }

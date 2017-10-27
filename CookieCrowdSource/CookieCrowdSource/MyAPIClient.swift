@@ -13,8 +13,8 @@ import Alamofire
 class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     static let sharedClient = MyAPIClient()
-    public static var baseURLString: String? = "http://192.168.0.7:5000"
-//   public static var baseURLString: String? = "http://noahbragg.pythonanywhere.com"
+//    public static var baseURLString: String? = "http://192.168.0.7:5000"
+   public static var baseURLString: String? = "http://noahbragg.pythonanywhere.com"
     var baseURL: URL {
         if let urlString = MyAPIClient.baseURLString, let url = URL(string: urlString) {
             return url
