@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PusherSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Stripe-Stripe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>20BBAE3CA8F816FC73594C9D8E311409</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E7DF1FBF4F96F62490994D5062123D3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88260E98B4EF26C5A61B1D104FDEFE53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>885ED33E923B559F40153FED2F0B8743</key>
+		<key>59FEA0B416DF2D94F144552A27824B1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B867F3D7B11C0E3DC2AA145936FBFC58</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D6A013D1660A848F6AAC95CF51442FBD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F673E950636B1EA43B8EA9B9AA2243F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

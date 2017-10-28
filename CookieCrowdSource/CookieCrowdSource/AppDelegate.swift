@@ -8,17 +8,57 @@
 
 import UIKit
 import Stripe
+import PusherSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var pusher: Pusher!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        STPPaymentConfiguration.shared().publishableKey = "pk_test_tAMChOZmT4OHrVNyhGvJmuLH"
         // Override point for customization after application launch.
+        
+        //setup for Pusher notifications
+        let options = PusherClientOptions(
+            host: .cluster("us2")
+        )
+        pusher = Pusher(key: "d05669f4df7a1f96f929", options: options)
+        
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                // Handle user allowing / declining notification permission. Example:
+                if (granted) {
+                    DispatchQueue.main.async(execute: {
+                        application.registerForRemoteNotifications()
+                    })
+                } else {
+                    print("User declined notification permissions")
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            application.registerUserNotificationSettings(notificationSettings)
+            application.registerForRemoteNotifications()
+        }
+        
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : Data) {
+        pusher.nativePusher.register(deviceToken: deviceToken)
+        pusher.nativePusher.subscribe(interestName: "cook_available")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print("i am not available in simulator \(error)")
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
