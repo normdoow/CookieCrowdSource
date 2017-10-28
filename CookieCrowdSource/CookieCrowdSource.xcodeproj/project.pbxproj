@@ -697,7 +697,7 @@
 				INFOPLIST_FILE = CookieCrowdSource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noahbragg.CookieCrowdSource;
+				PRODUCT_BUNDLE_IDENTIFIER = noahbragg.CookieCrowdSource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -714,7 +714,7 @@
 				INFOPLIST_FILE = CookieCrowdSource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noahbragg.CookieCrowdSource;
+				PRODUCT_BUNDLE_IDENTIFIER = noahbragg.CookieCrowdSource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
