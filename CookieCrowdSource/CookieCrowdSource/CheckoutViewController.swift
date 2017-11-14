@@ -89,7 +89,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         paymentContext.prefilledInformation = userInformation
         paymentContext.paymentAmount = price
         if !CookieUserDefaults().gotFreeCookies()! {
-            paymentContext.paymentAmount = 500
+            paymentContext.paymentAmount = 600
         }
         paymentContext.paymentCurrency = self.paymentCurrency
         self.paymentContext = paymentContext
