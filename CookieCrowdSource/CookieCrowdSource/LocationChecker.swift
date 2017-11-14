@@ -14,6 +14,7 @@ class LocationChecker : NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var currentLocation = CLLocationCoordinate2D()
     var coord = CLLocationCoordinate2D()
+    var isaiahCoord = CLLocationCoordinate2D()
     
     
     override init() {
@@ -22,8 +23,11 @@ class LocationChecker : NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         
         coord = CLLocationCoordinate2D()
-        coord.latitude = 39.691483              //coordinates for our apartment
+        coord.latitude = 39.691483              //coordinates
         coord.longitude = -84.101717
+        
+        isaiahCoord.latitude = 39.673647        //coordinates
+        isaiahCoord.longitude = -83.977037
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -50,7 +54,8 @@ class LocationChecker : NSObject, CLLocationManagerDelegate {
     //add a region with the given coordinates
     public func doesRegionIncludeCurrentLocation() -> Bool {
         let region = CLCircularRegion(center: coord, radius: 5632.7, identifier:  "id")        // 3.5 miles in meters
+        let secRegion = CLCircularRegion(center: isaiahCoord, radius: 5632.7, identifier: "secId")
         
-        return region.contains(currentLocation)
+        return region.contains(currentLocation) || secRegion.contains(currentLocation)
     }
 }
