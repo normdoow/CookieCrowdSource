@@ -49,7 +49,7 @@ class LocationChecker : NSObject, CLLocationManagerDelegate {
     
     //add a region with the given coordinates
     public func doesRegionIncludeCurrentLocation() -> Bool {
-        let region = CLCircularRegion(center: coord, radius: 8046.72, identifier:  "id")        // 5 miles in meters
+        let region = CLCircularRegion(center: coord, radius: 5632.7, identifier:  "id")        // 3.5 miles in meters
         
         return region.contains(currentLocation)
     }
