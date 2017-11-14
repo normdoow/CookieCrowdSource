@@ -235,7 +235,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             message = error?.localizedDescription ?? ""
         case .success:
             title = "Success"
-            message = "Thank you for your order! You will receive a dozen 🍪s in 30 to 40 minutes!"
+            message = "Thank you for your order! You will receive a dozen 🍪s in about 40 minutes!"
             CookieUserDefaults().setGotFreeCookies(gotFreeCookies: true)
         case .userCancellation:
             return
@@ -289,7 +289,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         let shipping = PKShippingMethod()
         shipping.amount = 0.0
         shipping.label = "Delivered to your Door"
-        shipping.detail = "Arrives in 30 - 40 minutes"
+        shipping.detail = "Arrives in about 40 minutes"
         shipping.identifier = "Delivered to your door"
         
         completion(.valid, nil, [shipping], nil)
