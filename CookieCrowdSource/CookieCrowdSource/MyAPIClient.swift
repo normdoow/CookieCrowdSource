@@ -96,6 +96,20 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         }
     }
     
+    func isIsaiahAvailable(completionHandler:@escaping (Bool) -> ()) {
+        let url = self.baseURL.appendingPathComponent("is_isaiah_available")
+        Alamofire.request(url, method: .get)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completionHandler(response.value! == "True")
+                case .failure:
+                    completionHandler(false)
+                }
+        }
+    }
+    
     func getCustomerIdHelper() -> String {
         var customerId = CookieUserDefaults().getCustomerId()
         if customerId == nil {

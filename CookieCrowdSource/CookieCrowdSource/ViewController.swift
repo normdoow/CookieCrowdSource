@@ -15,8 +15,10 @@ class ViewController: UIViewController {
     let locationChecker = LocationChecker()
     var timer = Timer()
     var loadingView:NVActivityIndicatorView?
-    var isCookAvailable = false
-    var isRightLocation = false
+    var isNoahAvailable = false
+    var isIsaiahAvailable = false
+    var isNoahRightLocation = false
+    var isIsaiahRightLocation = false
 
     @IBOutlet weak var getCookiesButton: UIButton!
     @IBOutlet weak var ingredientsButton: UIButton!
@@ -44,11 +46,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapCheckout(_ sender: Any) {
-        if !isCookAvailable && !isRightLocation {
+        if !isNoahAvailable && !isNoahRightLocation && !isIsaiahAvailable && !isIsaiahRightLocation {
             cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! You also must be in a location that is in a 3.5 mile radius from the Greene Or the Reserve of Xenia to be able to order cookies. Thank you for your patience while we are getting this new business idea up and running!")
-        } else if !isCookAvailable {
+        } else if (!isNoahAvailable && isNoahRightLocation || !isIsaiahAvailable && isIsaiahRightLocation) && !(isIsaiahRightLocation && isNoahRightLocation) {
             cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! Thank you for your patience while we are getting this new business idea up and running!")
-        } else if !isRightLocation {
+        } else if !isNoahRightLocation && !isIsaiahRightLocation {
             cookiesAlert(message: "You must be in a location that is in a 3.5 mile radius from the Greene Or the Reserve of Xenia for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thank you for your patience while we are getting this new business idea up and running!")
         } else {
             var price = 1200
@@ -90,25 +92,29 @@ class ViewController: UIViewController {
     func checkLocation() {
         //check the server to see if a cook is available - change the button accordingly
         MyAPIClient.sharedClient.isCookAvailable() { isCookAvailable in
-            if self.loadingView!.isAnimating {       //just the first time hitting the timer
-                self.loadingView!.stopAnimating()
-                self.loadingView!.removeFromSuperview()
-                self.timer.invalidate()
-                self.timer = Timer.scheduledTimer(timeInterval: 15, target: self,        //reset to make it only check every 30 sec
-                    selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
-            }
-            self.isCookAvailable = isCookAvailable
-            self.isRightLocation = self.locationChecker.doesRegionIncludeCurrentLocation()
-            
-            //set the different buttons based on location
-            if !self.locationChecker.isLocationAuthorized() {
-                self.changeToNotAuthorizedButton()
-            } else if !isCookAvailable {
-                self.changeToWhyNoCookiesButton()
-            } else if self.isRightLocation {
-                self.changeToGetCookiesButton()
-            } else {
-                self.changeToWhyNoCookiesButton()
+            MyAPIClient.sharedClient.isIsaiahAvailable() { isIsaiahAvailable in
+                if self.loadingView!.isAnimating {       //just the first time hitting the timer
+                    self.loadingView!.stopAnimating()
+                    self.loadingView!.removeFromSuperview()
+                    self.timer.invalidate()
+                    self.timer = Timer.scheduledTimer(timeInterval: 15, target: self,        //reset to make it only check every 30 sec
+                        selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
+                }
+                self.isNoahAvailable = isCookAvailable
+                self.isIsaiahAvailable = isIsaiahAvailable
+                self.isNoahRightLocation = self.locationChecker.doesRegionIncludeCurrentLocation()
+                self.isIsaiahRightLocation = self.locationChecker.doesIsaiahRegionIncludeCurrentLocation()
+                
+                //set the different buttons based on location
+                if !self.locationChecker.isLocationAuthorized() {
+                    self.changeToNotAuthorizedButton()
+                } else if !self.isNoahAvailable && !self.isIsaiahAvailable {
+                    self.changeToWhyNoCookiesButton()
+                } else if (self.isNoahRightLocation && self.isNoahAvailable) || (self.isIsaiahRightLocation && self.isIsaiahAvailable) {
+                    self.changeToGetCookiesButton()
+                } else {
+                    self.changeToWhyNoCookiesButton()
+                }
             }
         }
     }
