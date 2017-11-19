@@ -24,7 +24,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     let appleMerchantID: String? = nil
     
     // These values will be shown to the user when they purchase with Apple Pay.
-    let companyName = "Emoji Apparel"
+    let companyName = "Order Cookies"
     let paymentCurrency = "usd"
     
     let paymentContext: STPPaymentContext
@@ -129,7 +129,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         var red: CGFloat = 0
         self.theme.primaryBackgroundColor.getRed(&red, green: nil, blue: nil, alpha: nil)
         self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
-        self.navigationItem.title = "Emoji Apparel"
+        self.navigationItem.title = "Order Cookies"
         
         self.productImage.font = UIFont.systemFont(ofSize: 80)
         self.view.addSubview(self.totalRow)
@@ -149,18 +149,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.shippingRow.onTap = {
             self.paymentContext.presentShippingViewController()
         }
-        let button = UIButton(frame: CGRect(x: -10, y: 18, width: 100, height: 50))
-        button.backgroundColor = UIColor.clear
-        button.setTitleColor(UIColor(red:0.0, green:0.18, blue:0.41, alpha:1.00), for: UIControlState.normal)
-        button.setTitle("<Back", for: .normal)
-        button.titleLabel!.font = UIFont(name: "Arial-BoldMT", size: 24)
-        button.addTarget(self, action: #selector(dismiss as () -> Void), for: .touchUpInside)
-        
-        self.view.addSubview(button)
-    }
-    
-    @objc func dismiss() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -168,7 +156,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         let width = self.view.bounds.width
         self.productImage.sizeToFit()
         self.productImage.center = CGPoint(x: width/2.0,
-                                           y: self.productImage.bounds.height/2.0 + rowHeight)
+                                           y: self.productImage.bounds.height/2.0 + rowHeight * 2)
         self.paymentRow.frame = CGRect(x: 0, y: self.productImage.frame.maxY + rowHeight,
                                        width: width, height: rowHeight)
         self.shippingRow.frame = CGRect(x: 0, y: self.paymentRow.frame.maxY,

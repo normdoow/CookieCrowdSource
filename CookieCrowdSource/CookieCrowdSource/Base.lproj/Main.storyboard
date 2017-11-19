@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UmI-U9-NEP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Drawer Controller-->
+        <scene sceneID="CM3-D9-Qgk">
+            <objects>
+                <viewController id="UmI-U9-NEP" customClass="KYDrawerController" customModule="KYDrawerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hOJ-Xq-WlF"/>
+                        <viewControllerLayoutGuide type="bottom" id="QfQ-Fx-69W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mfT-kE-emy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="drawerWidth">
+                            <real key="value" value="280"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="mainSegueIdentifier" value="main"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="drawerSegueIdentifier" value="drawer"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="containerViewMaxAlpha">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="f5W-WW-bQY" kind="custom" identifier="main" customClass="KYEmbedMainControllerSegue" customModule="KYDrawerController" id="QGA-uD-Ljl"/>
+                        <segue destination="OnA-UO-3Ky" kind="custom" identifier="drawer" customClass="KYEmbedDrawerControllerSegue" customModule="KYDrawerController" id="u37-oH-tvu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8b5-m2-dum" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1919" y="125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v5A-3B-C2w">
+            <objects>
+                <navigationController id="f5W-WW-bQY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1yQ-tw-gNP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E7m-79-6ZL">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eEi-54-bN3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jSG-Db-mg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1025" y="125"/>
+        </scene>
+        <!--Drawer Controller-->
+        <scene sceneID="Wfb-t4-HFa">
+            <objects>
+                <viewController id="OnA-UO-3Ky" customClass="DrawerController" customModule="CookieCrowdSource" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7wa-eU-9yE"/>
+                        <viewControllerLayoutGuide type="bottom" id="OwT-v4-ZxU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y3i-1A-tmZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yNK-ld-6Ps" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1255" y="887"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -23,13 +92,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cookie_background" translatesAutoresizingMaskIntoConstraints="NO" id="cVc-vq-Quo">
-                                <rect key="frame" x="0.0" y="73" width="375" height="221"/>
+                                <rect key="frame" x="0.0" y="117" width="375" height="221"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="221" id="T5O-9x-ECU"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crowd Cookie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-Ay-Pop">
-                                <rect key="frame" x="0.0" y="28" width="375" height="37"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Eom-gj-5y5"/>
                                 </constraints>
@@ -38,9 +107,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cd4-lF-yf7">
-                                <rect key="frame" x="16" y="293" width="343" height="267"/>
+                                <rect key="frame" x="16" y="337" width="343" height="223"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">How Crowd Cookie works…
+                                <string key="text">How Crowd Cookie works…
 
 🍪 Delicious, homemade chocolate chip cookies are made by your neighbors.
 
@@ -50,7 +119,7 @@
 
 🍪 Crowd Cookie is only available in some areas of Dayton, Ohio.
 
-🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</mutableString>
+🍪 Click the “Get hot cookies” button below to get your warm, homemade cookies!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -79,7 +148,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first_dozen_half_off" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-hR-KhK">
-                                <rect key="frame" x="0.0" y="73" width="197" height="144"/>
+                                <rect key="frame" x="0.0" y="117" width="197" height="144"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="VBB-al-0wT"/>
                                     <constraint firstAttribute="height" constant="144" id="Y9L-cJ-OOd"/>
@@ -108,6 +177,14 @@
                             <constraint firstAttribute="trailing" secondItem="ehB-Ay-Pop" secondAttribute="trailing" id="wQw-h0-FhQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="tjy-eq-j50">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" id="rT8-47-3Y8">
+                            <color key="tintColor" red="0.054917071009999999" green="0.1706816256" blue="0.3962008655" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="didTapHamburgerButton:" destination="BYZ-38-t0r" id="4Gf-hS-ens"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dozenFreeImage" destination="2lt-hR-KhK" id="Fil-yM-JBs"/>
                         <outlet property="getCookiesButton" destination="f5p-ll-MWe" id="U5r-eb-sZu"/>
@@ -116,11 +193,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64.799999999999997" y="124.58770614692655"/>
+            <point key="canvasLocation" x="-89" y="125"/>
         </scene>
     </scenes>
     <resources>
         <image name="cookie_background" width="621" height="397"/>
         <image name="first_dozen_half_off" width="488" height="342"/>
+        <image name="hamburger" width="25" height="25"/>
     </resources>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 import Stripe
 import PusherSwift
 import UserNotifications
+import KYDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -45,6 +46,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(notificationSettings)
             application.registerForRemoteNotifications()
         }
+        
+        
+        //setup the drawer
+//        let mainViewController   = ViewController()
+//        let drawerViewController = DrawerController()
+//        let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
+//        drawerController.mainViewController = UINavigationController(
+//            rootViewController: mainViewController
+//        )
+//        drawerController.drawerViewController = drawerViewController
+//
+//        /* Customize
+//         drawerController.drawerDirection = .Right
+//         drawerController.drawerWidth     = 200
+//         */
+//
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = drawerController
+//        window?.makeKeyAndVisible()
         
         
         return true

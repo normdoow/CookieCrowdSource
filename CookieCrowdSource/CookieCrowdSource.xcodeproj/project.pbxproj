@@ -22,6 +22,7 @@
 		4B90164B1F660735005CD0C6 /* CookieUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90164A1F660735005CD0C6 /* CookieUserDefaults.swift */; };
 		4BFCA7091F5226A20078597F /* LocationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCA7081F5226A20078597F /* LocationChecker.swift */; };
 		4BFCA70B1F52470C0078597F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCA70A1F52470C0078597F /* ViewController.swift */; };
+		4BFE64431FC21F0600686287 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE64421FC21F0600686287 /* DrawerController.swift */; };
 		802D6BD642402764A9380B03 /* Pods_CookieCrowdSourceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850DD740A8A12C555D83031C /* Pods_CookieCrowdSourceUITests.framework */; };
 		A30BC6273DC87C2BEF74EE65 /* Pods_CookieCrowdSourceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25455F72924140952BFF5592 /* Pods_CookieCrowdSourceTests.framework */; };
 		F1AC377FF4A257730237A4CE /* Pods_CookieCrowdSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 262E305268BA5B5DE287F934 /* Pods_CookieCrowdSource.framework */; };
@@ -71,6 +72,7 @@
 		4B90164A1F660735005CD0C6 /* CookieUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieUserDefaults.swift; sourceTree = "<group>"; };
 		4BFCA7081F5226A20078597F /* LocationChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChecker.swift; sourceTree = "<group>"; };
 		4BFCA70A1F52470C0078597F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4BFE64421FC21F0600686287 /* DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		850DD740A8A12C555D83031C /* Pods_CookieCrowdSourceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookieCrowdSourceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B835EBF4902703CD45A236 /* Pods-CookieCrowdSourceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookieCrowdSourceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookieCrowdSourceTests/Pods-CookieCrowdSourceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4705E46B2224DCA55C4EA60 /* Pods-CookieCrowdSourceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookieCrowdSourceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CookieCrowdSourceUITests/Pods-CookieCrowdSourceUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		4B64D6F51F48EA1C0004FFA5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4BFE64421FC21F0600686287 /* DrawerController.swift */,
 				4BFCA70A1F52470C0078597F /* ViewController.swift */,
 				4B64D6F81F48ECFD0004FFA5 /* stripe */,
 				4B64D6F61F48EA520004FFA5 /* CheckoutViewController.swift */,
@@ -454,6 +457,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CookieCrowdSource/Pods-CookieCrowdSource-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PusherSwift/PusherSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
@@ -461,6 +465,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PusherSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
@@ -541,6 +546,7 @@
 				4B64D6C81F48D79B0004FFA5 /* AppDelegate.swift in Sources */,
 				4BFCA70B1F52470C0078597F /* ViewController.swift in Sources */,
 				4B64D6FE1F48EDA60004FFA5 /* SettingsViewController.swift in Sources */,
+				4BFE64431FC21F0600686287 /* DrawerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

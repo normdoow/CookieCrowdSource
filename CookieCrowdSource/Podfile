@@ -10,6 +10,7 @@ target 'CookieCrowdSource' do
   pod 'Alamofire', '~> 4.4'
   pod 'NVActivityIndicatorView'
   pod 'PusherSwift', '~> 5.0'
+  pod 'KYDrawerController'
 
   target 'CookieCrowdSourceTests' do
     inherit! :search_paths

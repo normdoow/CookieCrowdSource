@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import KYDrawerController
 
 class ViewController: UIViewController {
     
@@ -30,11 +31,12 @@ class ViewController: UIViewController {
         createCustomerIfFirstTime()
         
         ingredientsButton.layer.cornerRadius = 10
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         changeToLoadingButton()
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self,
@@ -58,7 +60,13 @@ class ViewController: UIViewController {
                 price = 600
             }
             let controller = CheckoutViewController(product: "🍪", price: price, settings: settings.settings)
-            self.present(controller, animated: true, completion: nil)
+            self.navigationController!.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction func didTapHamburgerButton(_ sender: Any) {
+        if let drawerController = navigationController?.parent as? KYDrawerController {
+            drawerController.setDrawerState(.opened, animated: true)
         }
     }
     
@@ -97,7 +105,7 @@ class ViewController: UIViewController {
                     self.loadingView!.stopAnimating()
                     self.loadingView!.removeFromSuperview()
                     self.timer.invalidate()
-                    self.timer = Timer.scheduledTimer(timeInterval: 15, target: self,        //reset to make it only check every 30 sec
+                    self.timer = Timer.scheduledTimer(timeInterval: 15, target: self,        //reset to make it only check every 15 sec
                         selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
                 }
                 self.isNoahAvailable = isCookAvailable
@@ -126,6 +134,9 @@ class ViewController: UIViewController {
         getCookiesButton.layer.cornerRadius = 10
         getCookiesButton.backgroundColor = UIColor(red:0.7, green:0.16, blue:0.13, alpha:1.00)
         //start the animating
+        if loadingView != nil {
+            loadingView!.removeFromSuperview()
+        }
         loadingView = NVActivityIndicatorView(frame: getCookiesButton.frame, type: NVActivityIndicatorType.pacman, color: NVActivityIndicatorView.DEFAULT_COLOR, padding: NVActivityIndicatorView.DEFAULT_PADDING)
         self.view.addSubview(loadingView!)
         loadingView!.startAnimating()
