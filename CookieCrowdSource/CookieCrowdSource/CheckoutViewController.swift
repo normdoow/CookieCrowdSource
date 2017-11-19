@@ -141,25 +141,25 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.activityIndicator.alpha = 0
         self.buyButton.addTarget(self, action: #selector(didTapBuy), for: .touchUpInside)
         self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
-        self.paymentRow.onTap = { [weak self] _ in
+        self.paymentRow.onTap = {
 //            if CookieUserDefaults().gotFreeCookies()! {
-                self?.paymentContext.presentPaymentMethodsViewController()
+                self.paymentContext.presentPaymentMethodsViewController()
 //            }
         }
-        self.shippingRow.onTap = { [weak self] _ in
-            self?.paymentContext.presentShippingViewController()
+        self.shippingRow.onTap = {
+            self.paymentContext.presentShippingViewController()
         }
         let button = UIButton(frame: CGRect(x: -10, y: 10, width: 100, height: 50))
         button.backgroundColor = UIColor.clear
         button.setTitleColor(UIColor(red:0.0, green:0.18, blue:0.41, alpha:1.00), for: UIControlState.normal)
         button.setTitle("<Back", for: .normal)
         button.titleLabel!.font = UIFont(name: "Arial-BoldMT", size: 24)
-        button.addTarget(self, action: #selector(dismiss as (Void) -> Void), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismiss as () -> Void), for: .touchUpInside)
         
         self.view.addSubview(button)
     }
     
-    func dismiss() {
+    @objc func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -180,7 +180,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.activityIndicator.center = self.buyButton.center
     }
     
-    func didTapBuy() {
+    @objc func didTapBuy() {
         self.paymentInProgress = true
         self.paymentContext.requestPayment()
 //        if CookieUserDefaults().gotFreeCookies()! {      //the user has to pay money for the cookies

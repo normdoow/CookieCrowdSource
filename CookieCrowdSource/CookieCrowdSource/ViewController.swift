@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkLocation() {
+    @objc func checkLocation() {
         //check the server to see if a cook is available - change the button accordingly
         MyAPIClient.sharedClient.isCookAvailable() { isCookAvailable in
             MyAPIClient.sharedClient.isIsaiahAvailable() { isIsaiahAvailable in

@@ -40,7 +40,7 @@ class CheckoutRowView: UIView {
         }
     }
     
-    var onTap: () -> () = {}
+    var onTap: () -> Void = {}
     
     fileprivate let titleLabel = UILabel()
     fileprivate let detailLabel = UILabel()
@@ -96,7 +96,7 @@ class CheckoutRowView: UIView {
                                               width: height, height: height)
     }
     
-    func didTap() {
+    @objc func didTap() {
         self.onTap()
     }
     

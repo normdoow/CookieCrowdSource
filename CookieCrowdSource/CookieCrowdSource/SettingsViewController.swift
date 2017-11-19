@@ -184,16 +184,16 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Settings"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismiss as (Void) -> Void))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismiss as () -> Void))
         let button = UIButton(frame: CGRect(x: 100, y: 80, width: 100, height: 50))
         button.backgroundColor = .green
         button.setTitle("Back", for: .normal)
-        button.addTarget(self, action: #selector(dismiss as (Void) -> Void), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismiss as () -> Void), for: .touchUpInside)
         
         self.view.addSubview(button)
     }
     
-    func dismiss() {
+    @objc func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
     
