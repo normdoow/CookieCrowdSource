@@ -118,6 +118,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B4A3E311FC2F6BF00CC5375 /* rest_api */ = {
+			isa = PBXGroup;
+			children = (
+				4B64D6FF1F48EDD80004FFA5 /* MyAPIClient.swift */,
+			);
+			name = rest_api;
+			sourceTree = "<group>";
+		};
 		4B64D6BB1F48D79B0004FFA5 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +151,7 @@
 		4B64D6C61F48D79B0004FFA5 /* CookieCrowdSource */ = {
 			isa = PBXGroup;
 			children = (
+				4B4A3E311FC2F6BF00CC5375 /* rest_api */,
 				4B4419631FA515B30027E195 /* CookieCrowdSource.entitlements */,
 				4BFCA7071F5226870078597F /* tools */,
 				4BFCA7061F5226780078597F /* model */,
@@ -191,7 +200,6 @@
 				4B64D6F91F48ED3C0004FFA5 /* CheckoutRowView.swift */,
 				4B64D6FB1F48ED690004FFA5 /* Buttons.swift */,
 				4B64D6FD1F48EDA60004FFA5 /* SettingsViewController.swift */,
-				4B64D6FF1F48EDD80004FFA5 /* MyAPIClient.swift */,
 				4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */,
 			);
 			name = stripe;

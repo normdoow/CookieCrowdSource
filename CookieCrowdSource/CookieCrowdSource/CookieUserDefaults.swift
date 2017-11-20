@@ -12,6 +12,7 @@ class CookieUserDefaults {
     
     private static let CUSTOMER_ID = "customer-id"
     private static let FREE_COOKIES = "free-cookies"
+    private static let BAKER_EMAIL = "baker-email"
     private var defaults:UserDefaults
     
     init() {
@@ -32,5 +33,13 @@ class CookieUserDefaults {
     
     func gotFreeCookies() -> Bool? {
         return defaults.bool(forKey: CookieUserDefaults.FREE_COOKIES)
+    }
+    
+    func setBakerEmail(bakerEmail: String) {
+        defaults.set(bakerEmail, forKey: CookieUserDefaults.BAKER_EMAIL)
+    }
+    
+    func getBakerEmail() -> String? {
+        return defaults.string(forKey: CookieUserDefaults.BAKER_EMAIL)
     }
 }

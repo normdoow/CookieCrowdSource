@@ -110,6 +110,21 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         }
     }
     
+    func sendNewBakerEmail(email: String, completionHandler:@escaping (Bool) -> ()) {
+        let url = self.baseURL.appendingPathComponent("send_new_baker_email")
+        let params: [String: Any] = ["email": email]
+        Alamofire.request(url, method: .get, parameters: params)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completionHandler(response.value! == "success sending email")
+                case .failure:
+                    completionHandler(false)
+                }
+        }
+    }
+    
     func getCustomerIdHelper() -> String {
         var customerId = CookieUserDefaults().getCustomerId()
         if customerId == nil {
