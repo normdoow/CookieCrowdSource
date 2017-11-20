@@ -10,50 +10,35 @@ import Foundation
 import UIKit
 import KYDrawerController
 
-class DrawerController: UIViewController {
+class DrawerController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var newEmailField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var sendEmailButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        passwordField.delegate = self
+        emailField.delegate = self
+        newEmailField.delegate = self
         
-        // Do any additional setup after loading the view.
-        let closeButton    = UIButton()
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.setTitle("Close", for: UIControlState())
-        closeButton.addTarget(self,
-                              action: #selector(didTapCloseButton),
-                              for: .touchUpInside
-        )
-        closeButton.sizeToFit()
-        closeButton.setTitleColor(UIColor.blue, for: UIControlState())
-        view.addSubview(closeButton)
-        view.addConstraint(
-            NSLayoutConstraint(
-                item: closeButton,
-                attribute: .centerX,
-                relatedBy: .equal,
-                toItem: view,
-                attribute: .centerX,
-                multiplier: 1,
-                constant: 0
-            )
-        )
-        view.addConstraint(
-            NSLayoutConstraint(
-                item: closeButton,
-                attribute: .centerY,
-                relatedBy: .equal,
-                toItem: view,
-                attribute: .centerY,
-                multiplier: 1,
-                constant: 0
-            )
-        )
-        view.backgroundColor = UIColor.white
+        loginButton.layer.cornerRadius = 10
+        sendEmailButton.layer.cornerRadius = 10
+    }
+    @IBAction func tapLogin(_ sender: Any) {
+        
     }
     
-    @objc func didTapCloseButton(_ sender: UIButton) {
-        if let drawerController = parent as? KYDrawerController {
-            drawerController.setDrawerState(.closed, animated: true)
-        }
+    @IBAction func tapSendEmail(_ sender: Any) {
+        
     }
+    
+    //delegate method for keyboard finished
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
