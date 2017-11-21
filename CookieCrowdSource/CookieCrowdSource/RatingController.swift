@@ -40,7 +40,14 @@ class RatingController: UIViewController, UITextViewDelegate {
         if commentsText.text == "" {
             showAlert(title: "No Comment", message: "Please add a comment to your rating. We really appreciate your feedback!")
         } else {
-            
+            MyAPIClient.sharedClient.sendRatingEmail(rating: String(format:"%.0f", starRatingView.rating), comments: commentsText.text,
+                                                     completionHandler: {(success: Bool) in
+//                    if success {
+                        self.dismiss(animated: true, completion: nil)
+//                    } else {
+//                        showAlert(title: "Failed to send", message: "Failed to send")
+//                    }
+                })
         }
     }
     
