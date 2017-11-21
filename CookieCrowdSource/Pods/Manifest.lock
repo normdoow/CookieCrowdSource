@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - Cosmos (12.0.1)
   - KYDrawerController (2.0.3)
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - Cosmos (~> 12.0)
   - KYDrawerController
   - NVActivityIndicatorView
   - PusherSwift (~> 5.0)
@@ -16,11 +18,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
   KYDrawerController: 9a154a4bf23cda836f5ccd69a0586447fde87c10
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   PusherSwift: f2e209d3c88ab95153bdc1cdda7a3e5c892127f2
   Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: a1afdafc908e156aa610940d00966e590678641c
+PODFILE CHECKSUM: 6a3005ef2d29320907c7c94855ae33d3add1fe18
 
 COCOAPODS: 1.3.1

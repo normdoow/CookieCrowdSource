@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B0E3CCD1FA15D4A0042FB95 /* StripeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */; };
+		4B4A3E341FC306AA00CC5375 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3E321FC306AA00CC5375 /* RatingController.swift */; };
+		4B4A3E351FC306AA00CC5375 /* RatingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4A3E331FC306AA00CC5375 /* RatingController.xib */; };
 		4B64D6C81F48D79B0004FFA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64D6C71F48D79B0004FFA5 /* AppDelegate.swift */; };
 		4B64D6CD1F48D79B0004FFA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B64D6CB1F48D79B0004FFA5 /* Main.storyboard */; };
 		4B64D6CF1F48D79B0004FFA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B64D6CE1F48D79B0004FFA5 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		2FCB23DC381D7897CCD8C38A /* Pods-CookieCrowdSourceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookieCrowdSourceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CookieCrowdSourceTests/Pods-CookieCrowdSourceTests.release.xcconfig"; sourceTree = "<group>"; };
 		4B0E3CCC1FA15D4A0042FB95 /* StripeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeKey.swift; sourceTree = "<group>"; };
 		4B4419631FA515B30027E195 /* CookieCrowdSource.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CookieCrowdSource.entitlements; sourceTree = "<group>"; };
+		4B4A3E321FC306AA00CC5375 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		4B4A3E331FC306AA00CC5375 /* RatingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingController.xib; sourceTree = "<group>"; };
 		4B64D6C41F48D79B0004FFA5 /* CookieCrowdSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookieCrowdSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64D6C71F48D79B0004FFA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B64D6CC1F48D79B0004FFA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 		4B64D6F51F48EA1C0004FFA5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4B4A3E321FC306AA00CC5375 /* RatingController.swift */,
+				4B4A3E331FC306AA00CC5375 /* RatingController.xib */,
 				4BFE64421FC21F0600686287 /* DrawerController.swift */,
 				4BFCA70A1F52470C0078597F /* ViewController.swift */,
 				4B64D6F81F48ECFD0004FFA5 /* stripe */,
@@ -361,6 +367,7 @@
 			files = (
 				4B64D6D21F48D79B0004FFA5 /* LaunchScreen.storyboard in Resources */,
 				4B64D6CF1F48D79B0004FFA5 /* Assets.xcassets in Resources */,
+				4B4A3E351FC306AA00CC5375 /* RatingController.xib in Resources */,
 				4B64D6CD1F48D79B0004FFA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +472,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CookieCrowdSource/Pods-CookieCrowdSource-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PusherSwift/PusherSwift.framework",
@@ -473,6 +481,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PusherSwift.framework",
@@ -546,6 +555,7 @@
 			files = (
 				4B64D6FC1F48ED690004FFA5 /* Buttons.swift in Sources */,
 				4B64D6FA1F48ED3C0004FFA5 /* CheckoutRowView.swift in Sources */,
+				4B4A3E341FC306AA00CC5375 /* RatingController.swift in Sources */,
 				4B64D7001F48EDD80004FFA5 /* MyAPIClient.swift in Sources */,
 				4BFCA7091F5226A20078597F /* LocationChecker.swift in Sources */,
 				4B64D6F71F48EA520004FFA5 /* CheckoutViewController.swift in Sources */,

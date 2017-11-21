@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self,
                              selector: #selector(ViewController.checkLocation), userInfo: nil, repeats: true)
+        self.present(RatingController(), animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
