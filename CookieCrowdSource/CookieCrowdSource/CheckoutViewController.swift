@@ -229,8 +229,16 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             return
         }
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        var completion:((UIAlertAction) -> Swift.Void)? = nil
+        if title == "Success" {
+            completion = {(action: UIAlertAction) in
+                self.present(RatingController(), animated: true, completion: nil)
+            }
+        }
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: completion)
         alertController.addAction(action)
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
