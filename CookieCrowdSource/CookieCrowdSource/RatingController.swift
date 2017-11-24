@@ -14,6 +14,8 @@ class RatingController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var timelabel: UILabel!
     @IBOutlet weak var commentsText: UITextView!
+    @IBOutlet weak var cookiesHotSegment: UISegmentedControl!
+    @IBOutlet weak var recommendSegment: UISegmentedControl!
     
     private var timer = Timer()
     private var time = 40
@@ -40,8 +42,10 @@ class RatingController: UIViewController, UITextViewDelegate {
         if commentsText.text == "" {
             showAlert(title: "No Comment", message: "Please add a comment to your rating. We really appreciate your feedback!")
         } else {
+            let isWarm = cookiesHotSegment.titleForSegment(at: cookiesHotSegment.selectedSegmentIndex)!
+            let isRecommend = recommendSegment.titleForSegment(at: recommendSegment.selectedSegmentIndex)!
             MyAPIClient.sharedClient.sendRatingEmail(rating: String(format:"%.0f", starRatingView.rating), comments: commentsText.text,
-                                                     completionHandler: {(success: Bool) in
+                                                     isWarm: isWarm, isRecommend: isRecommend, completionHandler: {(success: Bool) in
 //                    if success {
                         self.dismiss(animated: true, completion: nil)
 //                    } else {
@@ -72,11 +76,11 @@ class RatingController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        animateViewMoving(up: true, moveValue: 130)
+        animateViewMoving(up: true, moveValue: 160)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        animateViewMoving(up: false, moveValue: 130)
+        animateViewMoving(up: false, moveValue: 160)
     }
     
     ////        Helper methods      /////

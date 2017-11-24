@@ -125,10 +125,12 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         }
     }
     
-    func sendRatingEmail(rating: String, comments: String, completionHandler:@escaping (Bool) -> ()) {
+    func sendRatingEmail(rating: String, comments: String, isWarm: String, isRecommend: String, completionHandler:@escaping (Bool) -> ()) {
         let url = self.baseURL.appendingPathComponent("send_rating_email")
         let params: [String: Any] = ["rating": rating,
-                                     "comments": comments]
+                                     "comments": comments,
+                                     "isWarm": isWarm,
+                                     "isRecommend": isRecommend]
         Alamofire.request(url, method: .get, parameters: params)
             .validate(statusCode: 200..<300)
             .responseString { response in
