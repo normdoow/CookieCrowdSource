@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A884DB8C12F46D34DFD775EB97D915A"
+               BlueprintIdentifier = "37066183067C678A37D447E7261B3E23"
                BuildableName = "Pods_CookieCrowdSource.framework"
                BlueprintName = "Pods-CookieCrowdSource"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4A884DB8C12F46D34DFD775EB97D915A"
+            BlueprintIdentifier = "37066183067C678A37D447E7261B3E23"
             BuildableName = "Pods_CookieCrowdSource.framework"
             BlueprintName = "Pods-CookieCrowdSource"
             ReferencedContainer = "container:Pods.xcodeproj">

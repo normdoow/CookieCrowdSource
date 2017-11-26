@@ -11,6 +11,7 @@ import Stripe
 import PusherSwift
 import UserNotifications
 import KYDrawerController
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        STPPaymentConfiguration.shared().publishableKey = "pk_test_tAMChOZmT4OHrVNyhGvJmuLH"
         // Override point for customization after application launch.
+        
+        //mixpanel init
+        
         
         //setup for Pusher notifications
         let options = PusherClientOptions(
@@ -73,6 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : Data) {
         pusher.nativePusher.register(deviceToken: deviceToken)
         pusher.nativePusher.subscribe(interestName: "cook_available")
+        Mixpanel.mainInstance().identify(distinctId: "distinct identity")
+        Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

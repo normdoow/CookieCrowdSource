@@ -9,6 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 import KYDrawerController
+import Mixpanel
 
 class ViewController: UIViewController {
     
@@ -50,12 +51,16 @@ class ViewController: UIViewController {
 
     @IBAction func tapCheckout(_ sender: Any) {
         if !isNoahAvailable && !isNoahRightLocation && !isIsaiahAvailable && !isIsaiahRightLocation {
+            Mixpanel.mainInstance().track(event: "cookeis_unavailable_ wrong location and no cooks", properties: ["No prop" : "property"])
             cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! You also must be in a location that is in a 3.5 mile radius from the Greene Or the Reserve of Xenia to be able to order cookies. Thank you for your patience while we are getting this new business idea up and running!")
         } else if (!isNoahAvailable && isNoahRightLocation || !isIsaiahAvailable && isIsaiahRightLocation) && !(isIsaiahRightLocation && isNoahRightLocation) {
+            Mixpanel.mainInstance().track(event: "cookeis_unavailable_ no cooks available", properties: ["No prop" : "property"])
             cookiesAlert(message: "There are no cooks that are making cookies currently. Try again in the evening from 5pm to 9pm. There is more chance that we will be making cookies then! Thank you for your patience while we are getting this new business idea up and running!")
         } else if !isNoahRightLocation && !isIsaiahRightLocation {
+            Mixpanel.mainInstance().track(event: "cookeis_unavailable_ wrong location", properties: ["No prop" : "property"])
             cookiesAlert(message: "You must be in a location that is in a 3.5 mile radius from the Greene Or the Reserve of Xenia for you to be able to order cookies. We will hopefully be coming to a location closer to you soon! Thank you for your patience while we are getting this new business idea up and running!")
         } else {
+            Mixpanel.mainInstance().track(event: "Selected Get Hot Cookies", properties: ["No prop" : "property"])
             var price = 1200
             if CookieUserDefaults().gotFreeCookies() == nil || !CookieUserDefaults().gotFreeCookies()! {
                 price = 600

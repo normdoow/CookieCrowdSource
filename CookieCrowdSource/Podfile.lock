@@ -2,6 +2,9 @@ PODS:
   - Alamofire (4.5.0)
   - Cosmos (12.0.1)
   - KYDrawerController (2.0.3)
+  - Mixpanel-swift (2.2.2):
+    - Mixpanel-swift/Complete (= 2.2.2)
+  - Mixpanel-swift/Complete (2.2.2)
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
@@ -12,18 +15,30 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Cosmos (~> 12.0)
   - KYDrawerController
+  - Mixpanel-swift (from `https://github.com/mixpanel/mixpanel-swift.git`, branch `swift4`)
   - NVActivityIndicatorView
   - PusherSwift (~> 5.0)
   - Stripe
+
+EXTERNAL SOURCES:
+  Mixpanel-swift:
+    :branch: swift4
+    :git: https://github.com/mixpanel/mixpanel-swift.git
+
+CHECKOUT OPTIONS:
+  Mixpanel-swift:
+    :commit: 405ec3cda00b78c96ed9e436faaf1e2e9084b919
+    :git: https://github.com/mixpanel/mixpanel-swift.git
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
   KYDrawerController: 9a154a4bf23cda836f5ccd69a0586447fde87c10
+  Mixpanel-swift: 2cd7aac92ad4e9ba2957479c6e6db9b9170944bb
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   PusherSwift: f2e209d3c88ab95153bdc1cdda7a3e5c892127f2
   Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
 
-PODFILE CHECKSUM: 6a3005ef2d29320907c7c94855ae33d3add1fe18
+PODFILE CHECKSUM: 5c1e185ffd323a4153fff480d206fdcc401678c4
 
 COCOAPODS: 1.3.1

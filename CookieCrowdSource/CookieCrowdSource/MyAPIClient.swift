@@ -112,7 +112,7 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     func sendNewBakerEmail(email: String, completionHandler:@escaping (Bool) -> ()) {
         let url = self.baseURL.appendingPathComponent("send_new_baker_email")
-        let params: [String: Any] = ["email": email]
+        let params: [String: Any] = ["email": email] 
         Alamofire.request(url, method: .get, parameters: params)
             .validate(statusCode: 200..<300)
             .responseString { response in
