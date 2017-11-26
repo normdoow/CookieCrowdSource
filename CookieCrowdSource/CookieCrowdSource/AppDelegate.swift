@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //mixpanel init
         
-        
         //setup for Pusher notifications
         let options = PusherClientOptions(
             host: .cluster("us2")
@@ -77,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : Data) {
         pusher.nativePusher.register(deviceToken: deviceToken)
         pusher.nativePusher.subscribe(interestName: "cook_available")
-        Mixpanel.mainInstance().identify(distinctId: "distinct identity")
+        Mixpanel.mainInstance().identify(distinctId: UIDevice.current.identifierForVendor!.uuidString)
         Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
     }
     
