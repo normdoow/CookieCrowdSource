@@ -8,12 +8,12 @@
 
 #import "STPAPIRequest.h"
 
+#import "NSError+Stripe.h"
 #import "NSMutableURLRequest+Stripe.h"
 #import "STPAPIClient.h"
 #import "STPAPIClient+Private.h"
 #import "STPDispatchFunctions.h"
 #import "STPInternalAPIResponseDecodable.h"
-#import "StripeError.h"
 
 @implementation STPAPIRequest
 
@@ -164,13 +164,12 @@ static NSString * const JSONKeyObject = @"object";
             }
         }
     }
-    if (!deserializerClass) {
-        // No deserializer for response body
-        return safeCompletion(nil, [NSError stp_genericFailedToParseResponseError]);
-    }
 
-    // Generate response object
-    id<STPAPIResponseDecodable> responseObject = [deserializerClass decodedObjectFromAPIResponse:jsonDictionary];
+    id<STPAPIResponseDecodable> responseObject = nil;
+    if (deserializerClass) {
+        // Generate response object
+        responseObject = [deserializerClass decodedObjectFromAPIResponse:jsonDictionary];
+    }
 
     if (!responseObject) {
         // Failed to parse response

@@ -24,12 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //mixpanel init
+//        Mixpanel.initialize(token: "2f1bf0154e0e5c93761c28e0060cc30b")
         
         //setup for Pusher notifications
-        let options = PusherClientOptions(
-            host: .cluster("us2")
-        )
-        pusher = Pusher(key: "d05669f4df7a1f96f929", options: options)
+//        let options = PusherClientOptions(
+//            host: .cluster("us2")
+//        )
+//        pusher = Pusher(key: "d05669f4df7a1f96f929", options: options)
         
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
@@ -74,10 +75,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : Data) {
-        pusher.nativePusher.register(deviceToken: deviceToken)
-        pusher.nativePusher.subscribe(interestName: "cook_available")
-        Mixpanel.mainInstance().identify(distinctId: UIDevice.current.identifierForVendor!.uuidString)
-        Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
+//        pusher.nativePusher.register(deviceToken: deviceToken)
+//        pusher.nativePusher.subscribe(interestName: "cook_available")
+//        Mixpanel.mainInstance().identify(distinctId: UIDevice.current.identifierForVendor!.uuidString)
+//        Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

@@ -37,14 +37,18 @@ class DrawerController: UIViewController, UITextFieldDelegate {
     
     @IBAction func tapSendEmail(_ sender: Any) {
         newEmailField.resignFirstResponder()
-        MyAPIClient.sharedClient.sendNewBakerEmail(email: newEmailField.text!, completionHandler: {(isSuccess: Bool) in
-            if isSuccess {
-                self.showAlert(title: "Success", message: "We now have your email and will get in contact with you about making Crowd Cookies!")
-                self.newEmailField.text = ""
-            } else {
-                self.showAlert(title: "Failure", message: "We failed to receive your email. Is it possible that your internet is down?")
-            }
-        })
+        if(newEmailField.text! != "") {
+            MyAPIClient.sharedClient.sendNewBakerEmail(email: newEmailField.text!, completionHandler: {(isSuccess: Bool) in
+                if isSuccess {
+                    self.showAlert(title: "Success", message: "We now have your email and will get in contact with you about making Crowd Cookies!")
+                    self.newEmailField.text = ""
+                } else {
+                    self.showAlert(title: "Failure", message: "We failed to receive your email. Is it possible that your internet is down?")
+                }
+            })
+        } else {
+            showAlert(title: "No Email", message: "Please put your email in the field so we can get in contact with you!")
+        }
     }
     
     ///////     delegate methods   ///////
