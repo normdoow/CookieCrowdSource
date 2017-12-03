@@ -36,9 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateWithPaymentMethodTuple:(STPPaymentMethodTuple *)tuple;
 
-@property (nonatomic, strong, nullable) UIView *customFooterView;
-
-
 @end
 
 NS_ASSUME_NONNULL_END

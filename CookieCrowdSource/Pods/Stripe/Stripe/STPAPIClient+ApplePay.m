@@ -7,7 +7,6 @@
 
 #import <AddressBook/AddressBook.h>
 
-#import "NSError+Stripe.h"
 #import "PKPayment+Stripe.h"
 #import "STPAPIClient+ApplePay.h"
 #import "STPAPIClient+Private.h"
@@ -15,6 +14,7 @@
 #import "STPSourceParams.h"
 #import "STPTelemetryClient.h"
 #import "STPToken.h"
+#import "StripeError.h"
 
 FAUXPAS_IGNORED_IN_FILE(APIAvailability)
 

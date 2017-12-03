@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+import Mixpanel
 
 class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
@@ -144,10 +145,12 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.paymentRow.onTap = {
 //            if CookieUserDefaults().gotFreeCookies()! {
                 self.paymentContext.presentPaymentMethodsViewController()
+            Mixpanel.mainInstance().track(event: "tapped_select_payment", properties: ["No prop" : "property"])
 //            }
         }
         self.shippingRow.onTap = {
             self.paymentContext.presentShippingViewController()
+            Mixpanel.mainInstance().track(event: "tapped_select_Delivery", properties: ["No prop" : "property"])
         }
     }
     
@@ -169,6 +172,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     }
     
     @objc func didTapBuy() {
+        Mixpanel.mainInstance().track(event: "tapped_buy", properties: ["No prop" : "property"])
         self.paymentInProgress = true
         self.paymentContext.requestPayment()
 //        if CookieUserDefaults().gotFreeCookies()! {      //the user has to pay money for the cookies

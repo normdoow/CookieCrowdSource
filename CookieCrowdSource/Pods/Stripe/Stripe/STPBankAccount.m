@@ -7,26 +7,21 @@
 //
 
 #import "STPBankAccount.h"
+#import "STPBankAccount+Private.h"
 
 #import "NSDictionary+Stripe.h"
 #import "STPBankAccountParams+Private.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface STPBankAccount ()
 
-@property (nonatomic, copy, readwrite) NSString *stripeID;
-@property (nonatomic, copy, nullable, readwrite) NSString *routingNumber;
-@property (nonatomic, copy, readwrite) NSString *country;
-@property (nonatomic, copy, readwrite) NSString *currency;
-@property (nonatomic, copy, readwrite) NSString *last4;
-@property (nonatomic, copy, readwrite) NSString *bankName;
-@property (nonatomic, copy, nullable, readwrite) NSString *accountHolderName;
-@property (nonatomic, assign, readwrite) STPBankAccountHolderType accountHolderType;
-@property (nonatomic, copy, nullable, readwrite) NSDictionary<NSString *, NSString *> *metadata;
-@property (nonatomic, copy, nullable, readwrite) NSString *fingerprint;
-@property (nonatomic, assign, readwrite) STPBankAccountStatus status;
-@property (nonatomic, copy, readwrite) NSDictionary *allResponseFields;
+@property (nonatomic, readwrite) NSString *bankAccountId;
+@property (nonatomic, readwrite) NSString *last4;
+@property (nonatomic, readwrite) NSString *bankName;
+@property (nonatomic, readwrite) NSString *fingerprint;
+@property (nonatomic) STPBankAccountStatus status;
+@property (nonatomic, readwrite, nonnull, copy) NSDictionary *allResponseFields;
+
+// See STPBankAccount+Private.h
 
 @end
 
@@ -41,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
              @"new": @(STPBankAccountStatusNew),
              @"validated": @(STPBankAccountStatusValidated),
              @"verified": @(STPBankAccountStatusVerified),
-             @"verification_failed": @(STPBankAccountStatusVerificationFailed),
              @"errored": @(STPBankAccountStatusErrored),
              };
 }
@@ -57,21 +51,31 @@ NS_ASSUME_NONNULL_BEGIN
     return STPBankAccountStatusNew;
 }
 
-+ (nullable NSString *)stringFromStatus:(STPBankAccountStatus)status {
++ (NSString *)stringFromStatus:(STPBankAccountStatus)status {
     return [[[self stringToStatusMapping] allKeysForObject:@(status)] firstObject];
+}
+
+#pragma mark -
+
+- (void)setAccountNumber:(NSString *)accountNumber {
+    [super setAccountNumber:accountNumber];
+}
+
+- (NSString *)last4 {
+    return _last4 ?: [super last4];
 }
 
 #pragma mark - Equality
 
-- (BOOL)isEqual:(nullable id)bankAccount {
+- (BOOL)isEqual:(STPBankAccount *)bankAccount {
     return [self isEqualToBankAccount:bankAccount];
 }
 
 - (NSUInteger)hash {
-    return [self.stripeID hash];
+    return [self.bankAccountId hash];
 }
 
-- (BOOL)isEqualToBankAccount:(nullable STPBankAccount *)bankAccount {
+- (BOOL)isEqualToBankAccount:(STPBankAccount *)bankAccount {
     if (self == bankAccount) {
         return YES;
     }
@@ -80,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
         return NO;
     }
     
-    return [self.stripeID isEqualToString:bankAccount.stripeID];
+    return [self.bankAccountId isEqualToString:bankAccount.bankAccountId];
 }
 
 #pragma mark - Description
@@ -91,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
                        [NSString stringWithFormat:@"%@: %p", NSStringFromClass([self class]), self],
 
                        // Identifier
-                       [NSString stringWithFormat:@"stripeID = %@", self.stripeID],
+                       [NSString stringWithFormat:@"bankAccountId = %@", self.bankAccountId],
 
                        // Basic account details
                        [NSString stringWithFormat:@"routingNumber = %@", self.routingNumber],
@@ -102,12 +106,11 @@ NS_ASSUME_NONNULL_BEGIN
                        [NSString stringWithFormat:@"country = %@", self.country],
                        [NSString stringWithFormat:@"currency = %@", self.currency],
                        [NSString stringWithFormat:@"fingerprint = %@", self.fingerprint],
-                       [NSString stringWithFormat:@"metadata = %@", (self.metadata) ? @"<redacted>" : nil],
                        [NSString stringWithFormat:@"status = %@", [self.class stringFromStatus:self.status]],
 
                        // Owner details
                        [NSString stringWithFormat:@"accountHolderName = %@", (self.accountHolderName) ? @"<redacted>" : nil],
-                       [NSString stringWithFormat:@"accountHolderType = %@", [STPBankAccountParams stringFromAccountHolderType:self.accountHolderType]],
+                       [NSString stringWithFormat:@"accountHolderType = %@", [self.class stringFromAccountHolderType:self.accountHolderType]],
                        ];
 
     return [NSString stringWithFormat:@"<%@>", [props componentsJoinedByString:@"; "]];
@@ -126,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
              ];
 }
 
-+ (nullable instancetype)decodedObjectFromAPIResponse:(nullable NSDictionary *)response {
++ (instancetype)decodedObjectFromAPIResponse:(NSDictionary *)response {
     NSDictionary *dict = [response stp_dictionaryByRemovingNullsValidatingRequiredFields:[self requiredFields]];
     if (!dict) {
         return nil;
@@ -135,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
     STPBankAccount *bankAccount = [self new];
 
     // Identifier
-    bankAccount.stripeID = dict[@"id"];
+    bankAccount.bankAccountId = dict[@"id"];
 
     // Basic account details
     bankAccount.routingNumber = dict[@"routing_number"];
@@ -146,24 +149,15 @@ NS_ASSUME_NONNULL_BEGIN
     bankAccount.country = dict[@"country"];
     bankAccount.currency = dict[@"currency"];
     bankAccount.fingerprint = dict[@"fingerprint"];
-    bankAccount.metadata = [dict[@"metadata"] stp_dictionaryByRemovingNonStrings];
     bankAccount.status = [self statusFromString:dict[@"status"]];
 
     // Owner details
     bankAccount.accountHolderName = dict[@"account_holder_name"];
-    bankAccount.accountHolderType = [STPBankAccountParams accountHolderTypeFromString:dict[@"account_holder_type"]];
+    bankAccount.accountHolderType = [self accountHolderTypeFromString:dict[@"account_holder_type"]];
 
     bankAccount.allResponseFields = dict;
 
     return bankAccount;
 }
 
-#pragma mark - Deprecated methods
-
-- (NSString *)bankAccountId {
-    return self.stripeID;
-}
-
 @end
-
-NS_ASSUME_NONNULL_END

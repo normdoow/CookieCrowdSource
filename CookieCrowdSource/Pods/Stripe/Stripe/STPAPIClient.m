@@ -14,7 +14,6 @@
 #import "STPAPIClient+Private.h"
 
 #import "NSBundle+Stripe_AppName.h"
-#import "NSError+Stripe.h"
 #import "STPAPIRequest.h"
 #import "STPAnalyticsClient.h"
 #import "STPBankAccount.h"
@@ -32,6 +31,7 @@
 #import "STPSourcePoller.h"
 #import "STPTelemetryClient.h"
 #import "STPToken.h"
+#import "StripeError.h"
 #import "UIImage+Stripe.h"
 
 #if __has_include("Fabric.h")
@@ -365,8 +365,8 @@ static NSString * const FileUploadURL = @"https://uploads.stripe.com/v1/files";
 
 @implementation STPAPIClient (CreditCards)
 
-- (void)createTokenWithCard:(STPCardParams *)cardParams completion:(STPTokenCompletionBlock)completion {
-    NSMutableDictionary *params = [[STPFormEncoder dictionaryForObject:cardParams] mutableCopy];
+- (void)createTokenWithCard:(STPCard *)card completion:(STPTokenCompletionBlock)completion {
+    NSMutableDictionary *params = [[STPFormEncoder dictionaryForObject:card] mutableCopy];
     [[STPTelemetryClient sharedInstance] addTelemetryFieldsToParams:params];
     [self createTokenWithParameters:params completion:completion];
     [[STPTelemetryClient sharedInstance] sendTelemetryData];
@@ -414,8 +414,8 @@ static NSString * const FileUploadURL = @"https://uploads.stripe.com/v1/files";
     [paymentRequest setMerchantIdentifier:merchantIdentifier];
     [paymentRequest setSupportedNetworks:[self supportedPKPaymentNetworks]];
     [paymentRequest setMerchantCapabilities:PKMerchantCapability3DS];
-    [paymentRequest setCountryCode:countryCode.uppercaseString];
-    [paymentRequest setCurrencyCode:currencyCode.uppercaseString];
+    [paymentRequest setCountryCode:countryCode];
+    [paymentRequest setCurrencyCode:currencyCode];
     return paymentRequest;
 }
 

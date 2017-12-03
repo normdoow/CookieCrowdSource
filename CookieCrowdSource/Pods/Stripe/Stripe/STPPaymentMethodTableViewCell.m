@@ -13,7 +13,6 @@
 #import "STPImageLibrary+Private.h"
 #import "STPLocalizationUtils.h"
 #import "STPPaymentMethod.h"
-#import "STPSource.h"
 #import "STPTheme.h"
 
 @interface STPPaymentMethodTableViewCell ()
@@ -120,13 +119,6 @@
     if ([paymentMethod isKindOfClass:[STPCard class]]) {
         return [self buildAttributedStringWithCard:(STPCard *)paymentMethod selected:selected];
     }
-    else if ([paymentMethod isKindOfClass:[STPSource class]]) {
-        STPSource *source = (STPSource *)paymentMethod;
-        if (source.type == STPSourceTypeCard
-            && source.cardDetails != nil) {
-            return [self buildAttributedStringWithCardSource:source selected:selected];
-        }
-    }
 
     if ([paymentMethod isKindOfClass:[STPApplePayPaymentMethod class]]) {
         NSString *label = STPLocalizedString(@"Apple Pay", @"Text for Apple Pay payment method");
@@ -139,23 +131,9 @@
 }
 
 - (NSAttributedString *)buildAttributedStringWithCard:(STPCard *)card selected:(BOOL)selected {
-    return [self buildAttributedStringWithBrand:card.brand
-                                          last4:card.last4
-                                       selected:selected];
-}
-
-- (NSAttributedString *)buildAttributedStringWithCardSource:(STPSource *)card selected:(BOOL)selected {
-    return [self buildAttributedStringWithBrand:card.cardDetails.brand
-                                          last4:card.cardDetails.last4
-                                       selected:selected];
-}
-
-- (NSAttributedString *)buildAttributedStringWithBrand:(STPCardBrand)brand
-                                                 last4:(NSString *)last4
-                                              selected:(BOOL)selected {
     NSString *format = STPLocalizedString(@"%@ Ending In %@", @"{card brand} ending in {last4}");
-    NSString *brandString = [STPCard stringFromBrand:brand];
-    NSString *label = [NSString stringWithFormat:format, brandString, last4];
+    NSString *brandString = [STPCard stringFromBrand:card.brand];
+    NSString *label = [NSString stringWithFormat:format, brandString, card.last4];
 
     UIColor *primaryColor = selected ? self.theme.accentColor : self.theme.primaryForegroundColor;
     UIColor *secondaryColor = [primaryColor colorWithAlphaComponent:0.6f];
@@ -165,9 +143,9 @@
 
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label attributes:attributes];
     [attributedString addAttribute:NSForegroundColorAttributeName value:primaryColor range:[label rangeOfString:brandString]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:primaryColor range:[label rangeOfString:last4]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:primaryColor range:[label rangeOfString:card.last4]];
     [attributedString addAttribute:NSFontAttributeName value:self.theme.emphasisFont range:[label rangeOfString:brandString]];
-    [attributedString addAttribute:NSFontAttributeName value:self.theme.emphasisFont range:[label rangeOfString:last4]];
+    [attributedString addAttribute:NSFontAttributeName value:self.theme.emphasisFont range:[label rangeOfString:card.last4]];
 
     return [attributedString copy];
 }

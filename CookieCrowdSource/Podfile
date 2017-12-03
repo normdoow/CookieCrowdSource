@@ -6,11 +6,11 @@ target 'CookieCrowdSource' do
   use_frameworks!
 
   # Pods for CookieCrowdSource
-  pod 'Stripe'
-  pod 'Alamofire', '~> 4.4'
+  pod 'Stripe', '~> 11.2.0'
+  pod 'Alamofire', '~> 4.5.0'
   pod 'NVActivityIndicatorView'
-  pod 'PusherSwift', '~> 5.0'
-  pod 'KYDrawerController'
+  pod 'PusherSwift', '~> 5.0.1'
+  pod 'KYDrawerController', '~> 2.0.3'
   pod 'Cosmos', '~> 12.0'
   pod 'Mixpanel-swift', :git=> 'https://github.com/mixpanel/mixpanel-swift.git', :branch=> 'swift4'
 

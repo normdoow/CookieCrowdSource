@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import KYDrawerController
+import Mixpanel
 
 class DrawerController: UIViewController, UITextFieldDelegate {
     
@@ -31,6 +32,7 @@ class DrawerController: UIViewController, UITextFieldDelegate {
         sendEmailButton.layer.cornerRadius = 10
     }
     @IBAction func tapLogin(_ sender: Any) {
+        Mixpanel.mainInstance().track(event: "login_as_baker", properties: ["No prop" : "property"])
         //TODO actually implent this functionality
         showAlert(title: "Invalid Login", message: "The Email or Password is incorrect.")
     }
@@ -38,6 +40,7 @@ class DrawerController: UIViewController, UITextFieldDelegate {
     @IBAction func tapSendEmail(_ sender: Any) {
         newEmailField.resignFirstResponder()
         if(newEmailField.text! != "") {
+            Mixpanel.mainInstance().track(event: "send_baker_interested_button", properties: ["No prop" : "property"])
             MyAPIClient.sharedClient.sendNewBakerEmail(email: newEmailField.text!, completionHandler: {(isSuccess: Bool) in
                 if isSuccess {
                     self.showAlert(title: "Success", message: "We now have your email and will get in contact with you about making Crowd Cookies!")

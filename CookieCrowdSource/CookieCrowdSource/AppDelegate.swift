@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //mixpanel init
-//        Mixpanel.initialize(token: "2f1bf0154e0e5c93761c28e0060cc30b")
+        Mixpanel.initialize(token: "")
+        Mixpanel.mainInstance().enableVisualEditorForCodeless = false       //don't use the autotrack events, it doesn't work
         
         //setup for Pusher notifications
 //        let options = PusherClientOptions(
@@ -51,34 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
-        
-        //setup the drawer
-//        let mainViewController   = ViewController()
-//        let drawerViewController = DrawerController()
-//        let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
-//        drawerController.mainViewController = UINavigationController(
-//            rootViewController: mainViewController
-//        )
-//        drawerController.drawerViewController = drawerViewController
-//
-//        /* Customize
-//         drawerController.drawerDirection = .Right
-//         drawerController.drawerWidth     = 200
-//         */
-//
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = drawerController
-//        window?.makeKeyAndVisible()
-        
-        
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : Data) {
 //        pusher.nativePusher.register(deviceToken: deviceToken)
 //        pusher.nativePusher.subscribe(interestName: "cook_available")
-//        Mixpanel.mainInstance().identify(distinctId: UIDevice.current.identifierForVendor!.uuidString)
-//        Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
+        Mixpanel.mainInstance().identify(distinctId: UIDevice.current.identifierForVendor!.uuidString)
+        Mixpanel.mainInstance().people.addPushDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

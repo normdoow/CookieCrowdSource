@@ -45,7 +45,6 @@
 #import "STPShippingAddressViewController.h"
 #import "STPSource.h"
 #import "STPSourceCardDetails.h"
-#import "STPSourceEnums.h"
 #import "STPSourceOwner.h"
 #import "STPSourceParams.h"
 #import "STPSourceProtocol.h"
