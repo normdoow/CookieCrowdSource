@@ -18,8 +18,15 @@ class DrawerController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var newEmailField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var sendEmailButton: UIButton!
+    @IBOutlet weak var availabilityLabel: UILabel!
+    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var explanationLabel: UILabel!
+    @IBOutlet weak var bakerLoginLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var availableSwitch: UISwitch!
     
-    private var NEW_EMAIL_FIELD = 1234567
+    private let NEW_EMAIL_FIELD = 1234567
+    private var defaults = CookieUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +37,27 @@ class DrawerController: UIViewController, UITextFieldDelegate {
         
         loginButton.layer.cornerRadius = 10
         sendEmailButton.layer.cornerRadius = 10
+        
+        if defaults.getBakerEmail() != nil && defaults.getBakerEmail() != "" {
+            hideLogin()
+        } else {
+            showLogin()
+        }
+        if defaults.getAvailableToCustomers() != nil && defaults.getAvailableToCustomers()! {
+            availableSwitch.isOn = true
+            availabilityLabel.text = "Available to Customers"
+        } else {
+            availableSwitch.isOn = false
+            availabilityLabel.text = "Not Available to Customers"
+        }
     }
     @IBAction func tapLogin(_ sender: Any) {
         Mixpanel.mainInstance().track(event: "login_as_baker", properties: ["No prop" : "property"])
         //TODO actually implent this functionality
+        
+//        defaults.setBakerEmail(bakerEmail: emailField.text!)
         showAlert(title: "Invalid Login", message: "The Email or Password is incorrect.")
+//        hideLogin()
     }
     
     @IBAction func tapSendEmail(_ sender: Any) {
@@ -52,6 +75,59 @@ class DrawerController: UIViewController, UITextFieldDelegate {
         } else {
             showAlert(title: "No Email", message: "Please put your email in the field so we can get in contact with you!")
         }
+    }
+    
+    @IBAction func tapSignOut(_ sender: Any) {
+        let alertController = UIAlertController(title: "Are You Sure?", message: "Signing out will automatically turn off your availability for baking.", preferredStyle: .alert)
+        let action2 = UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction) in
+                self.showLogin()
+                self.defaults.setBakerEmail(bakerEmail: "")
+                self.defaults.setAvailableToCustomers(isAvailable: false)
+                self.availableSwitch.isOn = false
+                self.availabilityLabel.text = "Not Available to Customers"
+            })
+        let action = UIAlertAction(title: "NO", style: .default, handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func switchChanged(_ sender: Any) {
+        var message = "You are turning ON your availabilty to bake cookies. Are you sure you are ready to fulfill orders?"
+        if !availableSwitch.isOn {
+            message = "Are you sure that you want to turn OFF your availabilty to bake cookies?"
+        }
+        let alertController = UIAlertController(title: "Are You Sure?", message: message, preferredStyle: .alert)
+        let action2 = UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction) in
+            if self.availableSwitch.isOn {
+                self.availabilityLabel.text = "Available to Customers"
+                self.defaults.setAvailableToCustomers(isAvailable: true)
+            } else {
+                self.availabilityLabel.text = "Not Available to Customers"
+                self.defaults.setAvailableToCustomers(isAvailable: false)
+            }
+        })
+        let action = UIAlertAction(title: "NO", style: .default, handler: { (action: UIAlertAction) in
+            self.availableSwitch.isOn = !self.availableSwitch.isOn
+        })
+        alertController.addAction(action)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func hideLogin() {
+        containerView.isHidden = true
+        availableSwitch.isHidden = false
+        signOutButton.isHidden = false
+        bakerLoginLabel.text = "Baker Dashboard"
+    }
+    
+    func showLogin() {
+        containerView.isHidden = false
+        availableSwitch.isHidden = true
+        signOutButton.isHidden = true
+        bakerLoginLabel.text = "Baker Login"
     }
     
     ///////     delegate methods   ///////

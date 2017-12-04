@@ -13,6 +13,7 @@ class CookieUserDefaults {
     private static let CUSTOMER_ID = "customer-id"
     private static let FREE_COOKIES = "free-cookies"
     private static let BAKER_EMAIL = "baker-email"
+    private static let AVAILABLE_TO_CUSTOMERS = "available-to-customers"
     private var defaults:UserDefaults
     
     init() {
@@ -35,11 +36,18 @@ class CookieUserDefaults {
         return defaults.bool(forKey: CookieUserDefaults.FREE_COOKIES)
     }
     
+    //used to see if baker is logged in or not
     func setBakerEmail(bakerEmail: String) {
         defaults.set(bakerEmail, forKey: CookieUserDefaults.BAKER_EMAIL)
     }
-    
     func getBakerEmail() -> String? {
         return defaults.string(forKey: CookieUserDefaults.BAKER_EMAIL)
+    }
+    
+    func setAvailableToCustomers(isAvailable: Bool) {
+        defaults.set(isAvailable, forKey: CookieUserDefaults.AVAILABLE_TO_CUSTOMERS)
+    }
+    func getAvailableToCustomers() -> Bool? {
+        return defaults.bool(forKey: CookieUserDefaults.AVAILABLE_TO_CUSTOMERS)
     }
 }
