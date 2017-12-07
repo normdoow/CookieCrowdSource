@@ -52,12 +52,15 @@ class DrawerController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func tapLogin(_ sender: Any) {
-        Mixpanel.mainInstance().track(event: "login_as_baker", properties: ["No prop" : "property"])
-        //TODO actually implent this functionality
-        
-//        defaults.setBakerEmail(bakerEmail: emailField.text!)
-        showAlert(title: "Invalid Login", message: "The Email or Password is incorrect.")
-//        hideLogin()
+        MyAPIClient.sharedClient.loginBaker(pw: passwordField.text!, email: emailField.text!, completionHandler: { (isCorrect: Bool) in
+            if isCorrect {
+                self.defaults.setBakerEmail(bakerEmail: self.emailField.text!)
+                self.hideLogin()
+                Mixpanel.mainInstance().track(event: "login_as_baker", properties: ["No prop" : "property"])
+            } else {
+                self.showAlert(title: "Invalid Login", message: "The Email or Password is incorrect.")
+            }
+        })
     }
     
     @IBAction func tapSendEmail(_ sender: Any) {
@@ -100,11 +103,27 @@ class DrawerController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Are You Sure?", message: message, preferredStyle: .alert)
         let action2 = UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction) in
             if self.availableSwitch.isOn {
-                self.availabilityLabel.text = "Available to Customers"
-                self.defaults.setAvailableToCustomers(isAvailable: true)
+                //send out request to server
+                MyAPIClient.sharedClient.changeBakerAvailability(isAvailableText: "Yes", bakerEmail: self.defaults.getBakerEmail()!, completionHandler: { (isSuccess: Bool) in
+                    if isSuccess {
+                        Mixpanel.mainInstance().track(event: "baker \(self.defaults.getBakerEmail()!) became available", properties: ["No prop" : "property"])
+                        self.availabilityLabel.text = "Available to Customers"
+                        self.defaults.setAvailableToCustomers(isAvailable: true)
+                    } else {
+                        self.availableSwitch.isOn = !self.availableSwitch.isOn
+                    }
+                })
             } else {
-                self.availabilityLabel.text = "Not Available to Customers"
-                self.defaults.setAvailableToCustomers(isAvailable: false)
+                //send out request to server
+                MyAPIClient.sharedClient.changeBakerAvailability(isAvailableText: "No", bakerEmail: self.defaults.getBakerEmail()!, completionHandler: { (isSuccess: Bool) in
+                    if isSuccess {
+                        Mixpanel.mainInstance().track(event: "baker \(self.defaults.getBakerEmail()!) became unavailable", properties: ["No prop" : "property"])
+                        self.availabilityLabel.text = "Not Available to Customers"
+                        self.defaults.setAvailableToCustomers(isAvailable: false)
+                    } else {
+                        self.availableSwitch.isOn = !self.availableSwitch.isOn
+                    }
+                })
             }
         })
         let action = UIAlertAction(title: "NO", style: .default, handler: { (action: UIAlertAction) in

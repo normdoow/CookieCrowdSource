@@ -128,6 +128,36 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         }
     }
     
+    func loginBaker(pw: String, email: String, completionHandler:@escaping (Bool) -> ()) {
+        let url = self.baseURL.appendingPathComponent("login_baker")
+        let params: [String: Any] = ["pw": pw, "email": email]
+        Alamofire.request(url, method: .get, parameters: params)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completionHandler(response.value! == "success")
+                case .failure:
+                    completionHandler(false)
+                }
+        }
+    }
+    
+    func changeBakerAvailability(isAvailableText: String, bakerEmail: String, completionHandler:@escaping (Bool) -> ()) {
+        let url = self.baseURL.appendingPathComponent("change_baker_availability")
+        let params: [String: Any] = ["baker_email": bakerEmail, "is_available": isAvailableText]
+        Alamofire.request(url, method: .get, parameters: params)
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    completionHandler(response.value! == "success")
+                case .failure:
+                    completionHandler(false)
+                }
+        }
+    }
+    
     func sendRatingEmail(rating: String, comments: String, isWarm: String, isRecommend: String, completionHandler:@escaping (Bool) -> ()) {
         let url = self.baseURL.appendingPathComponent("send_rating_email")
         let params: [String: Any] = ["rating": rating,
