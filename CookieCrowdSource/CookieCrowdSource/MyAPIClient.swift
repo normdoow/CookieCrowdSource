@@ -86,7 +86,7 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     func getCookAvailable(lat:Double, lon:Double, completionHandler:@escaping (String) -> ()) {
         let url = self.baseURL.appendingPathComponent("cook_available")
-        let params: [String: Any] = ["lat": lat, "lon": lon]
+        let params: [String: Any] = ["lat": lat, "long": lon]
         Alamofire.request(url, method: .get, parameters: params)
             .validate(statusCode: 200..<300)
             .responseString { response in
@@ -94,7 +94,7 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                 case .success:
                     completionHandler(response.value!)
                 case .failure:
-                    completionHandler("")
+                    completionHandler("Failed to Connect")
                 }
         }
     }

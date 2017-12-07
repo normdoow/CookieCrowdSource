@@ -83,11 +83,18 @@ class DrawerController: UIViewController, UITextFieldDelegate {
     @IBAction func tapSignOut(_ sender: Any) {
         let alertController = UIAlertController(title: "Are You Sure?", message: "Signing out will automatically turn off your availability for baking.", preferredStyle: .alert)
         let action2 = UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction) in
-                self.showLogin()
-                self.defaults.setBakerEmail(bakerEmail: "")
-                self.defaults.setAvailableToCustomers(isAvailable: false)
-                self.availableSwitch.isOn = false
-                self.availabilityLabel.text = "Not Available to Customers"
+                MyAPIClient.sharedClient.changeBakerAvailability(isAvailableText: "No", bakerEmail: self.defaults.getBakerEmail()!, completionHandler: { (isSuccess: Bool) in
+                    if isSuccess {
+                        Mixpanel.mainInstance().track(event: "baker \(self.defaults.getBakerEmail()!) became unavailable", properties: ["No prop" : "property"])
+                        self.showLogin()
+                        self.defaults.setBakerEmail(bakerEmail: "")
+                        self.defaults.setAvailableToCustomers(isAvailable: false)
+                        self.availableSwitch.isOn = false
+                        self.availabilityLabel.text = "Not Available to Customers"
+                    } else {
+                        self.showAlert(title: "Failure", message: "We failed to turn your availibility off")
+                    }
+                })
             })
         let action = UIAlertAction(title: "NO", style: .default, handler: nil)
         alertController.addAction(action)
