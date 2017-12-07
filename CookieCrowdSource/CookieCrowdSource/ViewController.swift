@@ -126,17 +126,6 @@ class ViewController: UIViewController {
                     self.whyNoCookiesText = availableText
                     self.changeToWhyNoCookiesButton()
                 }
-                
-                //set the different buttons based on location
-//                if !self.locationChecker.isLocationAuthorized() {
-//                    self.changeToNotAuthorizedButton()
-//                } else if !self.isNoahAvailable && !self.isIsaiahAvailable {
-//                    self.changeToWhyNoCookiesButton()
-//                } else if (self.isNoahRightLocation && self.isNoahAvailable) || (self.isIsaiahRightLocation && self.isIsaiahAvailable) {
-//                    self.changeToGetCookiesButton()
-//                } else {
-//                    self.changeToWhyNoCookiesButton()
-//                }
             }
         }
     }
