@@ -84,7 +84,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="119" id="z7y-vs-xI0"/>
                                 </constraints>
-                                <string key="text">You can turn your availability on and off from the switch below. When the switch is on, be prepared to receive emails and fulfill orders!</string>
+                                <string key="text">You can turn your availability ON and OFF from the switch below. When the switch is ON, be prepared to receive emails and fulfill orders!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.054917071009999999" green="0.1706816256" blue="0.3962008655" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>

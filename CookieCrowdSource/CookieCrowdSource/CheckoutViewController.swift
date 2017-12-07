@@ -214,6 +214,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                                                 amount: self.paymentContext.paymentAmount,
                                                 shippingAddress: self.paymentContext.shippingAddress,
                                                 shippingMethod: self.paymentContext.selectedShippingMethod,
+                                                bakerEmail: CookieUserDefaults().getMyBakerEmail()!,
                                                 completion: completion)
     }
     

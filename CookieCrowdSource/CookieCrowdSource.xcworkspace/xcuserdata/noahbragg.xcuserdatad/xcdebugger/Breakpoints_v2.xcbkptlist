@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "isCookAvailable(completionHandler:)"
+            landmarkName = "getCookAvailable(lat:lon:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "isCookAvailable(completionHandler:)"
+            landmarkName = "getCookAvailable(lat:lon:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
-            landmarkName = "isCookAvailable(completionHandler:)"
+            landmarkName = "getCookAvailable(lat:lon:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
             endingLineNumber = "87"
-            landmarkName = "isCookAvailable(completionHandler:)"
+            landmarkName = "getCookAvailable(lat:lon:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
-            landmarkName = "isCookAvailable(completionHandler:)"
+            landmarkName = "getCookAvailable(lat:lon:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

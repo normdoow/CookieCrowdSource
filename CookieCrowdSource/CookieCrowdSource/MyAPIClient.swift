@@ -27,14 +27,16 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                         amount: Int,
                         shippingAddress: STPAddress?,
                         shippingMethod: PKShippingMethod?,
+                        bakerEmail: String,
                         completion: @escaping STPErrorBlock) {
-        let url = self.baseURL.appendingPathComponent("charge")
+        let url = self.baseURL.appendingPathComponent("charge_v2")
         let customerId = getCustomerIdHelper()
         
         var params: [String: Any] = [
             "source": result.source.stripeID,
             "amount": amount,
             "customer_id": customerId,
+            "baker_email": bakerEmail,
             "email": shippingAddress!.email!
         ]
 //        params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
@@ -82,16 +84,17 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
         }
     }
     
-    func isCookAvailable(completionHandler:@escaping (Bool) -> ()) {
-        let url = self.baseURL.appendingPathComponent("is_cook_available")
-        Alamofire.request(url, method: .get)
+    func getCookAvailable(lat:Double, lon:Double, completionHandler:@escaping (String) -> ()) {
+        let url = self.baseURL.appendingPathComponent("cook_available")
+        let params: [String: Any] = ["lat": lat, "lon": lon]
+        Alamofire.request(url, method: .get, parameters: params)
             .validate(statusCode: 200..<300)
             .responseString { response in
                 switch response.result {
                 case .success:
-                    completionHandler(response.value! == "True")
+                    completionHandler(response.value!)
                 case .failure:
-                    completionHandler(false)
+                    completionHandler("")
                 }
         }
     }
