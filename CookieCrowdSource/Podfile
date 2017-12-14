@@ -13,6 +13,7 @@ target 'CookieCrowdSource' do
   pod 'KYDrawerController', '~> 2.0.3'
   pod 'Cosmos', '~> 12.0'
   pod 'Mixpanel-swift', :git=> 'https://github.com/mixpanel/mixpanel-swift.git', :branch=> 'swift4'
+  pod 'ImageSlideshow', '~> 1.4'
 
   target 'CookieCrowdSourceTests' do
     inherit! :search_paths

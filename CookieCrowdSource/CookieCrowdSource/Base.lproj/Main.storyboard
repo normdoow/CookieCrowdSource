@@ -300,13 +300,19 @@
                                     <constraint firstAttribute="height" constant="144" id="Y9L-cJ-OOd"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I11-Ah-qnz" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                <rect key="frame" x="0.0" y="117" width="375" height="221"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99489795918367352" green="0.98979591836734693" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="I11-Ah-qnz" firstAttribute="bottom" secondItem="cVc-vq-Quo" secondAttribute="bottom" id="4ye-ix-Zz6"/>
                             <constraint firstAttribute="bottom" secondItem="f5p-ll-MWe" secondAttribute="bottom" constant="20" symbolic="YES" id="5h7-fV-3YM"/>
                             <constraint firstItem="2lt-hR-KhK" firstAttribute="top" secondItem="ehB-Ay-Pop" secondAttribute="bottom" constant="8" symbolic="YES" id="BU8-CC-kPw"/>
                             <constraint firstItem="ehB-Ay-Pop" firstAttribute="trailing" secondItem="cVc-vq-Quo" secondAttribute="trailing" id="Fgm-s4-cji"/>
                             <constraint firstItem="mFq-ru-tcV" firstAttribute="leading" secondItem="f5p-ll-MWe" secondAttribute="leading" id="JSY-TM-PMw"/>
+                            <constraint firstItem="I11-Ah-qnz" firstAttribute="trailing" secondItem="cVc-vq-Quo" secondAttribute="trailing" id="OCC-qN-Psf"/>
                             <constraint firstItem="cVc-vq-Quo" firstAttribute="leading" secondItem="2lt-hR-KhK" secondAttribute="leading" id="Qrv-ac-u8L"/>
                             <constraint firstItem="ehB-Ay-Pop" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TyH-CR-njf"/>
                             <constraint firstItem="ehB-Ay-Pop" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WSD-fG-oS2"/>
@@ -320,7 +326,9 @@
                             <constraint firstItem="cVc-vq-Quo" firstAttribute="top" secondItem="2lt-hR-KhK" secondAttribute="top" id="rvj-FL-eTa"/>
                             <constraint firstItem="cVc-vq-Quo" firstAttribute="centerX" secondItem="cd4-lF-yf7" secondAttribute="centerX" id="s6p-q8-8iR"/>
                             <constraint firstItem="f5p-ll-MWe" firstAttribute="top" secondItem="mFq-ru-tcV" secondAttribute="bottom" constant="8" symbolic="YES" id="tng-pP-GJt"/>
+                            <constraint firstItem="I11-Ah-qnz" firstAttribute="leading" secondItem="cVc-vq-Quo" secondAttribute="leading" id="vVb-eE-Anm"/>
                             <constraint firstAttribute="trailing" secondItem="ehB-Ay-Pop" secondAttribute="trailing" id="wQw-h0-FhQ"/>
+                            <constraint firstItem="I11-Ah-qnz" firstAttribute="top" secondItem="2lt-hR-KhK" secondAttribute="top" id="yeY-06-bb9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tjy-eq-j50">
@@ -335,11 +343,12 @@
                         <outlet property="dozenFreeImage" destination="2lt-hR-KhK" id="Fil-yM-JBs"/>
                         <outlet property="getCookiesButton" destination="f5p-ll-MWe" id="U5r-eb-sZu"/>
                         <outlet property="ingredientsButton" destination="mFq-ru-tcV" id="6bL-zj-ny8"/>
+                        <outlet property="slideshow" destination="I11-Ah-qnz" id="O3d-dt-4Qn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-89" y="125"/>
+            <point key="canvasLocation" x="-90.400000000000006" y="124.58770614692655"/>
         </scene>
     </scenes>
     <resources>

@@ -10,6 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 import KYDrawerController
 import Mixpanel
+import ImageSlideshow
 
 class ViewController: UIViewController {
     
@@ -22,10 +23,12 @@ class ViewController: UIViewController {
     var isNoahRightLocation = false
     var isIsaiahRightLocation = false
     var whyNoCookiesText = ""
+    let localSource = [ImageSource(imageString: "cookie_background")!, ImageSource(imageString: "cookies_img2")!, ImageSource(imageString: "cookie_background")!]
 
     @IBOutlet weak var getCookiesButton: UIButton!
     @IBOutlet weak var ingredientsButton: UIButton!
     @IBOutlet weak var dozenFreeImage: UIImageView!
+    @IBOutlet weak var slideshow: ImageSlideshow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,23 @@ class ViewController: UIViewController {
         
         ingredientsButton.layer.cornerRadius = 10
         
+        setSlideShow()
+    }
+    
+    func setSlideShow() {
+        slideshow.backgroundColor = UIColor.white
+        slideshow.slideshowInterval = 5.0
+        slideshow.pageControlPosition = PageControlPosition.insideScrollView
+        slideshow.pageControl.currentPageIndicatorTintColor = UIColor(red:0.0, green:0.18, blue:0.41, alpha:1.00)
+        slideshow.pageControl.pageIndicatorTintColor = UIColor.white
+        slideshow.contentScaleMode = UIViewContentMode.scaleAspectFill
+        
+        slideshow.currentPageChanged = { page in
+            print("current page:", page)
+        }
+        
+        // can be used with other sample sources as `afNetworkingSource`, `alamofireSource` or `sdWebImageSource` or `kingfisherSource`
+        slideshow.setImageInputs(localSource)
     }
     
     override func viewDidAppear(_ animated: Bool) {

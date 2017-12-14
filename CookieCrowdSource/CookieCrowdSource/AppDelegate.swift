@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //mixpanel init
-        Mixpanel.initialize(token: "2f1bf0154e0e5c93761c28e0060cc30b")
+        Mixpanel.initialize(token: "")
         Mixpanel.mainInstance().enableVisualEditorForCodeless = false       //don't use the autotrack events, it doesn't work
         
         //setup for Pusher notifications
